@@ -3,8 +3,5 @@
 </template>
 
 <style lang="scss" scoped>
-  @import '@/styles/reset.css';
-  img {
-    pointer-events: none;
-  }
+@import "@/styles/reset.css";
 </style>

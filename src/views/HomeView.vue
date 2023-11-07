@@ -1,6 +1,6 @@
 <script setup>
-  import { getCookie } from '@/utilities/util';
-  import HeaderComponent from '@/components/ui/Header.vue';
+import { getCookie } from "@/utilities/util";
+import HeaderComponent from "@/components/ui/Header.vue";
 </script>
 
 <template>
@@ -13,8 +13,10 @@
         <p>97 754 32 10</p>
       </div>
     </div>
-    <p style="user-select: all" class="web-session">{{ getCookie('web-session') }}</p>
-    <div @click="$router.push({ name: 'game' })" class="bottom-content">
+    <p style="user-select: all" class="web-session">
+      {{ getCookie("web-session") }}
+    </p>
+    <div @click="$router.replace({ name: 'game' })" class="bottom-content">
       <div class="text-bottom">
         <p class="attempts">5 попыток</p>
         <p class="start-game">
@@ -44,68 +46,68 @@
 </template>
 
 <style lang="scss" scoped>
-  .user-container {
-    padding: 20px;
-    max-height: 100dvh;
-    height: 100dvh;
+.user-container {
+  padding: 20px;
+  max-height: 100dvh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  & .user-data {
     display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    & .user-data {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      & .user-text {
-        color: #fff;
-        font-family: 'Golos Text', sans-serif !important;
-        font-size: 12px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
-      }
-      & .user-name {
-        padding-bottom: 3px;
-      }
-    }
-    & .web-session {
-      padding-top: 10px;
+    align-items: center;
+    gap: 10px;
+    & .user-text {
       color: #fff;
-      font-family: 'Golos Text', sans-serif !important;
+      font-family: "Golos Text", sans-serif !important;
       font-size: 12px;
       font-style: normal;
       font-weight: 700;
       line-height: normal;
     }
-    & .bottom-content {
-      margin-top: auto;
-      border-radius: 10px;
-      height: 50px;
-      width: 100%;
-      padding: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #fff;
-      & .attempts {
-        color: rgba(54, 56, 69, 0.6);
-        font-family: 'Golos Text', sans-serif !important;
-        font-size: 12px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-      }
-      & .start-game {
-        font-family: 'Golos Text', sans-serif !important;
-        color: #000;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
-        text-transform: uppercase;
-      }
-      & .img-bottom {
-        margin-top: -25px;
-      }
+    & .user-name {
+      padding-bottom: 3px;
     }
   }
+  & .web-session {
+    padding-top: 10px;
+    color: #fff;
+    font-family: "Golos Text", sans-serif !important;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  & .bottom-content {
+    margin-top: auto;
+    border-radius: 10px;
+    height: 50px;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    & .attempts {
+      color: rgba(54, 56, 69, 0.6);
+      font-family: "Golos Text", sans-serif !important;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+    & .start-game {
+      font-family: "Golos Text", sans-serif !important;
+      color: #000;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      text-transform: uppercase;
+    }
+    & .img-bottom {
+      margin-top: -25px;
+    }
+  }
+}
 </style>
