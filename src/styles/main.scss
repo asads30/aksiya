@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&display=swap');
+
+* {
+  user-select: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  vertical-align: auto;
+}
+
+html, body {
+  font-family: Golos Text, sans-serif !important;
+  overflow: hidden;
+  height: 100dvh;
+  max-height: 100dvh;
+  background-color: #242429;
+}
