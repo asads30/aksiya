@@ -1,4 +1,4 @@
-import { ref } from 'vue';
+import { ref } from "vue";
 
 export const useMinuteCountDown = () => {
   const secondsTimeLine = ref(0);
@@ -6,6 +6,7 @@ export const useMinuteCountDown = () => {
   const intervalTimeout = ref(null);
   const startCountDownGame = () => {
     function addMinutes(date, minutes) {
+      date.setSeconds(date.getSeconds() + 1);
       date.setMinutes(date.getMinutes() + minutes);
       return date;
     }

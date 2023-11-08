@@ -1,5 +1,5 @@
-const { defineConfig } = require('@vue/cli-service');
-const path = require('path'); // Если ранее не была подключена зависимость
+const { defineConfig } = require("@vue/cli-service");
+const path = require("path"); // Если ранее не была подключена зависимость
 
 module.exports = defineConfig({
   lintOnSave: false,
@@ -7,7 +7,7 @@ module.exports = defineConfig({
   configureWebpack: {
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, 'src'),
+        "@": path.resolve(__dirname, "src"),
       },
     },
   },
