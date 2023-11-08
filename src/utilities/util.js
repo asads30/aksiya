@@ -11,7 +11,7 @@ const getStorage = function (key, item) {
   }
 };
 
-const clearStorage = function (key = 'false') {
+const clearStorage = function (key = "false") {
   if (key) {
     localStorage.removeItem(key);
   } else {
@@ -21,7 +21,7 @@ const clearStorage = function (key = 'false') {
 
 const getCookie = function (name) {
   let arr,
-    reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)');
+    reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
   if ((arr = document.cookie.match(reg))) return arr[2];
   else return null;
 };

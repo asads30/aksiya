@@ -1,11 +1,11 @@
-import { ref } from 'vue';
-import { useGameStore } from '@/stores/GameStore';
-import { storeToRefs } from 'pinia';
+import { ref } from "vue";
+import { useGameStore } from "@/stores/GameStore";
+import { storeToRefs } from "pinia";
 
 const cardList = ref([]);
 
-const initDeck = deckData => {
-  deckData?.forEach(item => {
+const initDeck = (deckData) => {
+  deckData?.forEach((item) => {
     cardList.value.push({
       value: item,
       variant: 1,

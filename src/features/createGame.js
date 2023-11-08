@@ -1,6 +1,6 @@
-import _ from 'lodash';
-import { computed, ref } from 'vue';
-import { useGameStore } from '@/stores/GameStore';
+import _ from "lodash";
+import { computed, ref } from "vue";
+import { useGameStore } from "@/stores/GameStore";
 
 export default function createGame(deck) {
   const newPlayer = ref(true);
@@ -32,7 +32,9 @@ export default function createGame(deck) {
   });
 
   const matchesFound = computed(() => {
-    const matchedCards = deck.value.filter(card => card.matched === true).length;
+    const matchedCards = deck.value.filter(
+      (card) => card.matched === true
+    ).length;
     return matchedCards / 2;
   });
 
