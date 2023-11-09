@@ -5,6 +5,7 @@
 <style lang="scss" scoped>
 @import "@/styles/reset.css";
 img {
-  pointer-events: none;
+  user-drag: none;
+  -webkit-user-drag: none;
 }
 </style>
