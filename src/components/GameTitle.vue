@@ -3,7 +3,7 @@
     <div class="ripple">
       <div class="prizes">
         <div>
-          <img src="@/assets/svg/Prize.svg" alt="" />
+          <img src="@/assets/svg/Prize.svg" draggable="false" alt="" />
           <p class="about-prize">О призах</p>
         </div>
       </div>
@@ -22,6 +22,7 @@
         <div></div>
       </div>
       <img
+        draggable="false"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasBottom"
         aria-controls="offcanvasBottom"
@@ -85,7 +86,7 @@
       <div class="prizes-description">
         <div>
           <div class="prize-item">
-            <img src="@/assets/prize-photo.svg" alt="" />
+            <img src="@/assets/prize-photo.svg" draggable="false" alt="" />
           </div>
           <p class="prize-text">
             Чтобы стать участником акции – необходимо пройти идентификацию в
@@ -96,7 +97,7 @@
       <div class="prizes-description">
         <div>
           <div class="prize-item">
-            <img src="@/assets/prize-photo.svg" alt="" />
+            <img src="@/assets/prize-photo.svg" draggable="false" alt="" />
           </div>
           <p class="prize-text">
             Чтобы стать участником акции – необходимо пройти идентификацию в
@@ -107,7 +108,7 @@
       <div class="prizes-description">
         <div>
           <div class="prize-item">
-            <img src="@/assets/prize-photo.svg" alt="" />
+            <img src="@/assets/prize-photo.svg" draggable="false" alt="" />
           </div>
           <p class="prize-text">
             Чтобы стать участником акции – необходимо пройти идентификацию в
@@ -118,7 +119,7 @@
       <div class="prizes-description">
         <div>
           <div class="prize-item">
-            <img src="@/assets/prize-photo-2.svg" alt="" />
+            <img src="@/assets/prize-photo-2.svg" draggable="false" alt="" />
           </div>
           <p class="prize-text">
             Чтобы стать участником акции – необходимо пройти идентификацию в

@@ -6,7 +6,7 @@
           :to="leftLink ? leftLink : '/'"
           v-if="left"
           class="header-left-link"
-          ><img src="@/assets/svg/back.svg" alt=""
+          ><img src="@/assets/svg/back.svg" draggable="false" alt=""
         /></router-link>
       </div>
       <div class="header-center">

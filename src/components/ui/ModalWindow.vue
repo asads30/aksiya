@@ -11,6 +11,7 @@
         <header id="modalTitle">
           <slot name="header"></slot>
           <img
+            draggable="false"
             v-if="headerCloseBtn"
             src="../../assets/svg/Vector.svg"
             alt=""

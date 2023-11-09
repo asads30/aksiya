@@ -141,6 +141,7 @@ watch(
   >
     <template v-slot:header>
       <img
+        draggable="false"
         src="@/assets/svg/end-survey.svg"
         loading="lazy"
         class="header-end-image"
@@ -161,6 +162,7 @@ watch(
   >
     <template v-slot:header>
       <img
+        draggable="false"
         src="@/assets/svg/end-survey.svg"
         loading="lazy"
         class="header-end-image"

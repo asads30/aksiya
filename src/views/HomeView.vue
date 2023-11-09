@@ -7,7 +7,7 @@ import HeaderComponent from "@/components/ui/Header.vue";
   <div class="user-container">
     <HeaderComponent center-text=""></HeaderComponent>
     <div class="user-data">
-      <img src="@/assets/svg/avatar.svg" alt="" />
+      <img src="@/assets/svg/avatar.svg" draggable="false" alt="" />
       <div class="user-text">
         <p class="user-name">Ulugbek</p>
         <p>97 754 32 10</p>
@@ -39,7 +39,7 @@ import HeaderComponent from "@/components/ui/Header.vue";
         </p>
       </div>
       <div class="img-bottom">
-        <img src="@/assets/svg/bottom.svg" alt="" />
+        <img src="@/assets/svg/bottom.svg" draggable="false" alt="" />
       </div>
     </div>
   </div>

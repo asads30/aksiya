@@ -89,6 +89,7 @@ watch(
       :style="{ animationPlayState: !startedGame ? 'paused' : 'running' }"
     >
       <img
+        draggable="false"
         :style="
           timelineGame.secondsTimeLine.value !== 0
             ? 'opacity: 1'
@@ -124,6 +125,7 @@ watch(
         src="@/assets/svg/end-survey.svg"
         loading="lazy"
         class="header-end-image"
+        draggable="false"
         alt=""
       />
       <p class="header-text">Ууууупс время истекло</p>
