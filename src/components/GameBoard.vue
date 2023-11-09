@@ -88,18 +88,20 @@ watch(
       </div>
     </div>
   </div>
-  <transition-group tag="section" class="game-board" name="shuffle-card">
-    <Card
-      v-for="card in cardList"
-      :key="`${card.value}-${card.variant}`"
-      :matched="card.matched"
-      :value="card.value"
-      :visible="card.visible"
-      :position="card.position"
-      :opened="card.opened"
-      @select-card="selectCard"
-    />
-  </transition-group>
+  <div class="game-container">
+    <transition-group tag="section" class="game-board" name="shuffle-card">
+      <Card
+        v-for="card in cardList"
+        :key="`${card.value}-${card.variant}`"
+        :matched="card.matched"
+        :value="card.value"
+        :visible="card.visible"
+        :position="card.position"
+        :opened="card.opened"
+        @select-card="selectCard"
+      />
+    </transition-group>
+  </div>
   <ModalWindow
     btnName="Закрыть"
     v-if="isModalTimeEnded"
