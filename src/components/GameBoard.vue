@@ -101,7 +101,13 @@ watch(
       />
     </div>
   </div>
-  <div style="height: calc(100% - 150px)">
+  <div
+    style="
+      height: calc(100% - 150px);
+      max-height: calc(100% - 150px);
+      overflow: hidden;
+    "
+  >
     <transition-group tag="section" class="game-board" name="shuffle-card">
       <Card
         v-for="card in cardList"

@@ -118,14 +118,7 @@ watch(
         leftLink="/"
       ></HeaderComponent>
     </div>
-    <div
-      style="
-        height: calc(100dvh - 70px);
-        max-height: calc(100dvh - 70px);
-        overflow-y: scroll;
-        overflow-x: hidden;
-      "
-    >
+    <div style="height: calc(100dvh - 70px); max-height: calc(100dvh - 70px)">
       <GameTitle />
       <GameBoard :cardList="cardList" :status="status" @flip-card="flipCard" />
     </div>
@@ -219,20 +212,21 @@ watch(
 }
 .game-board {
   display: grid;
+  overflow: hidden;
   max-height: 100%;
   height: 100%;
   align-content: center;
   justify-content: center;
-  grid-template-columns: repeat(3, 100px);
-  grid-template-rows: repeat(4, 100px);
+  grid-template-columns: repeat(3, 28%);
+  grid-template-rows: repeat(4, 23%);
   grid-column-gap: 10px;
   grid-row-gap: 10px;
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 320px) {
   .game-board {
-    grid-template-columns: repeat(3, 70px);
-    grid-template-rows: repeat(4, 70px);
+    grid-template-columns: repeat(3, 27%);
+    grid-template-rows: repeat(4, 22%);
   }
 }
 
