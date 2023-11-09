@@ -118,7 +118,13 @@ watch(
         leftLink="/"
       ></HeaderComponent>
     </div>
-    <div style="height: calc(100dvh - 70px); max-height: calc(100dvh - 70px)">
+    <div
+      style="
+        height: calc(100dvh - 70px);
+        max-height: calc(100dvh - 70px);
+        overflow: hidden;
+      "
+    >
       <GameTitle />
       <GameBoard :cardList="cardList" :status="status" @flip-card="flipCard" />
     </div>
