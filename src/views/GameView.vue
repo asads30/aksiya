@@ -141,6 +141,7 @@ watch(
   >
     <template v-slot:header>
       <img
+        draggable="false"
         src="@/assets/svg/end-survey.svg"
         loading="lazy"
         class="header-end-image"
@@ -161,6 +162,7 @@ watch(
   >
     <template v-slot:header>
       <img
+        draggable="false"
         src="@/assets/svg/end-survey.svg"
         loading="lazy"
         class="header-end-image"
@@ -216,28 +218,21 @@ watch(
   }
 }
 .game-board {
-  padding-top: 10px;
   display: grid;
+  max-height: 100%;
   height: 100%;
-  width: 100%;
-  grid-template-columns: repeat(3, 80px);
-  grid-template-rows: repeat(4, 80px);
-  grid-column-gap: 10px;
+  align-content: center;
   justify-content: center;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(4, 100px);
+  grid-column-gap: 10px;
   grid-row-gap: 10px;
 }
 
-@media screen and (min-width: 280px) {
+@media screen and (max-width: 375px) {
   .game-board {
-    grid-template-columns: repeat(3, 75px);
-    grid-template-rows: repeat(4, 80px);
-  }
-}
-
-@media screen and (min-width: 280px) and (min-width: 360px) {
-  .game-board {
-    grid-template-columns: repeat(3, 100px);
-    grid-template-rows: repeat(4, 80px);
+    grid-template-columns: repeat(3, 70px);
+    grid-template-rows: repeat(4, 70px);
   }
 }
 

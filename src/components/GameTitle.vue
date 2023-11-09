@@ -1,11 +1,12 @@
 <template>
   <div class="game-rules">
-    <div class="prizes">
-      <div>
-        <img src="@/assets/svg/Prize.svg" alt="" />
-        <p class="about-prize">О призах</p>
+    <div class="ripple">
+      <div class="prizes">
+        <div>
+          <img src="@/assets/svg/Prize.svg" draggable="false" alt="" />
+          <p class="about-prize">О призах</p>
+        </div>
       </div>
-      <div></div>
     </div>
     <div class="rules">
       <div>
@@ -21,6 +22,7 @@
         <div></div>
       </div>
       <img
+        draggable="false"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasBottom"
         aria-controls="offcanvasBottom"
@@ -84,7 +86,7 @@
       <div class="prizes-description">
         <div>
           <div class="prize-item">
-            <img src="@/assets/prize-photo.svg" alt="" />
+            <img src="@/assets/prize-photo.svg" draggable="false" alt="" />
           </div>
           <p class="prize-text">
             Чтобы стать участником акции – необходимо пройти идентификацию в
@@ -95,7 +97,7 @@
       <div class="prizes-description">
         <div>
           <div class="prize-item">
-            <img src="@/assets/prize-photo.svg" alt="" />
+            <img src="@/assets/prize-photo.svg" draggable="false" alt="" />
           </div>
           <p class="prize-text">
             Чтобы стать участником акции – необходимо пройти идентификацию в
@@ -106,7 +108,7 @@
       <div class="prizes-description">
         <div>
           <div class="prize-item">
-            <img src="@/assets/prize-photo.svg" alt="" />
+            <img src="@/assets/prize-photo.svg" draggable="false" alt="" />
           </div>
           <p class="prize-text">
             Чтобы стать участником акции – необходимо пройти идентификацию в
@@ -117,7 +119,7 @@
       <div class="prizes-description">
         <div>
           <div class="prize-item">
-            <img src="@/assets/prize-photo-2.svg" alt="" />
+            <img src="@/assets/prize-photo-2.svg" draggable="false" alt="" />
           </div>
           <p class="prize-text">
             Чтобы стать участником акции – необходимо пройти идентификацию в
@@ -133,26 +135,39 @@
 .game-rules {
   padding: 0 20px;
   display: flex;
-  gap: 25px;
+  gap: 15px;
   justify-content: space-between;
+  & .ripple {
+    width: 100%;
+    background-position: center;
+    transition: background 0.5s;
+    & :active {
+      background-color: #6eb9f7;
+      background-size: 100%;
+      transition: background 0s;
+    }
+  }
   & .prizes {
     display: flex;
     align-items: center;
-    border-radius: 1000px;
+    height: 37px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: -10px 10px 25px 0px rgba(255, 255, 255, 0.1) inset;
+    backdrop-filter: blur(15px);
     gap: 15px;
-    border: 1px solid #ffeaa5;
+    transition: background 200ms;
     width: 100%;
-    background: linear-gradient(
-      90deg,
-      rgba(255, 234, 165, 0.1) 0%,
-      rgba(255, 198, 47, 0.1) 100%
-    );
-    box-shadow: -5px 5px 10px 0px rgba(255, 255, 255, 0.1) inset,
-      3px -5px 10px 0px rgba(17, 65, 48, 0.1) inset;
-    backdrop-filter: blur(5px);
     & div {
+      height: 27px;
+      stroke-width: 0.5px;
+      stroke: #ffc62f;
+      filter: drop-shadow(0px 2px 8px rgba(255, 198, 47, 0.5));
       display: flex;
       align-items: center;
+      & img {
+        padding-top: 2px;
+      }
     }
     & .about-prize {
       color: #f7f7f7;
@@ -169,17 +184,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-radius: 1000px;
-    border: 1px solid #0073ff;
+    height: 37px;
+    border-radius: 12px;
     width: 100%;
-    background: linear-gradient(
-      90deg,
-      rgba(0, 222, 255, 0.1) 0%,
-      rgba(0, 115, 255, 0.1) 100%
-    );
-    box-shadow: -5px 5px 10px 0px rgba(255, 255, 255, 0.1) inset,
-      3px -5px 10px 0px rgba(17, 65, 48, 0.1) inset;
-    backdrop-filter: blur(5px);
+    transition: background 200ms;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(217, 217, 217, 0.1) center;
+    box-shadow: -10px 10px 25px 0px rgba(255, 255, 255, 0.1) inset;
+    backdrop-filter: blur(15px);
     & div {
       display: flex;
       align-items: center;
@@ -195,6 +207,15 @@
       font-style: normal;
       font-weight: 400;
       line-height: 20px;
+    }
+    & img {
+      padding-top: 2px;
+      align-self: center;
+    }
+    & :active {
+      background-color: #6eb9f7;
+      background-size: 100%;
+      transition: background 0s;
     }
   }
 }
@@ -258,6 +279,22 @@
     font-weight: 400;
     line-height: normal;
     align-self: center;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .game-rules {
+    & .prizes div img {
+      width: 37px;
+    }
+    & .rules img {
+      width: 37px;
+    }
+    .rules {
+      .rule-game {
+        margin-left: 5px;
+      }
+    }
   }
 }
 </style>
