@@ -58,37 +58,49 @@ watch(
 </script>
 
 <template>
-  <div v-show="timelineGame.secondsTimeLine.value !== 0">
-    <div class="game-status">
-      <p class="opened-card">
-        Открыто карт <span class="count-opened"> {{ countVisibleCard }}</span
-        ><span class="line">/</span><span class="total-chances">2</span>
-      </p>
-      <p class="timeline">
-        {{
-          timelineGame.secondsTimeLine.value < 10 &&
-          timelineGame.secondsTimeLine.value > 0
-            ? `00:0${timelineGame.secondsTimeLine.value}`
-            : timelineGame.secondsTimeLine.value >= 10
-            ? `00:${timelineGame.secondsTimeLine.value}`
-            : timelineGame.secondsTimeLine.value === 0
-            ? "01:00"
-            : timelineGame.secondsTimeLine.value < 0
-            ? `01:00`
-            : "00:00"
-        }}
-      </p>
-    </div>
-    <div class="myProgress">
-      <div
-        ref="progressGame"
-        :style="{ animationPlayState: !startedGame ? 'paused' : 'running' }"
-      >
-        <img src="@/assets/svg/TimeLineProgress.png" class="myBar" alt="" />
-      </div>
+  <div
+    :style="
+      timelineGame.secondsTimeLine.value !== 0 ? 'opacity: 1' : 'opacity: 0.3'
+    "
+    class="game-status"
+  >
+    <p class="opened-card">
+      Открыто карт <span class="count-opened"> {{ countVisibleCard }}</span
+      ><span class="line">/</span><span class="total-chances">2</span>
+    </p>
+    <p class="timeline">
+      {{
+        timelineGame.secondsTimeLine.value < 10 &&
+        timelineGame.secondsTimeLine.value > 0
+          ? `00:0${timelineGame.secondsTimeLine.value}`
+          : timelineGame.secondsTimeLine.value >= 10
+          ? `00:${timelineGame.secondsTimeLine.value}`
+          : timelineGame.secondsTimeLine.value === 0
+          ? "01:00"
+          : timelineGame.secondsTimeLine.value < 0
+          ? `01:00`
+          : "00:00"
+      }}
+    </p>
+  </div>
+  <div class="myProgress">
+    <div
+      ref="progressGame"
+      :style="{ animationPlayState: !startedGame ? 'paused' : 'running' }"
+    >
+      <img
+        :style="
+          timelineGame.secondsTimeLine.value !== 0
+            ? 'opacity: 1'
+            : 'opacity: 0.3'
+        "
+        src="@/assets/svg/TimeLineProgress.png"
+        class="myBar"
+        alt=""
+      />
     </div>
   </div>
-  <div class="game-container">
+  <div style="height: calc(100% - 150px)">
     <transition-group tag="section" class="game-board" name="shuffle-card">
       <Card
         v-for="card in cardList"
