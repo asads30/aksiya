@@ -1,34 +1,22 @@
 <template>
   <div class="game-rules">
-    <div class="ripple">
-      <div class="prizes">
-        <div>
-          <img src="@/assets/svg/Prize.svg" draggable="false" alt="" />
-          <p class="about-prize">О призах</p>
-        </div>
+    <div class="prizes">
+      <div>
+        <img src="@/assets/svg/Prize.svg" draggable="false" alt="" />
+        <p class="about-prize">О призах</p>
       </div>
     </div>
-    <div class="rules">
+    <div
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasBottom"
+      aria-controls="offcanvasBottom"
+      class="rules"
+    >
       <div>
-        <button
-          type="button"
-          class="rule-game"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasBottom"
-          aria-controls="offcanvasBottom"
-        >
-          Правила игры
-        </button>
+        <button type="button" class="rule-game">Правила игры</button>
         <div></div>
       </div>
-      <img
-        draggable="false"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasBottom"
-        aria-controls="offcanvasBottom"
-        src="@/assets/svg/Rules.svg"
-        alt=""
-      />
+      <img draggable="false" src="@/assets/svg/Rules.svg" alt="" />
     </div>
   </div>
   <div class="title-game">
@@ -137,16 +125,6 @@
   display: flex;
   gap: 15px;
   justify-content: space-between;
-  & .ripple {
-    width: 100%;
-    background-position: center;
-    transition: background 0.5s;
-    & :active {
-      background-color: #6eb9f7;
-      background-size: 100%;
-      transition: background 0s;
-    }
-  }
   & .prizes {
     display: flex;
     align-items: center;
@@ -177,6 +155,8 @@
       font-size: 12px;
       font-style: normal;
       font-weight: 400;
+      padding-left: 18px;
+      padding-right: 15px;
       line-height: 20px;
     }
   }
@@ -211,11 +191,6 @@
     & img {
       padding-top: 2px;
       align-self: center;
-    }
-    & :active {
-      background-color: #6eb9f7;
-      background-size: 100%;
-      transition: background 0s;
     }
   }
 }
@@ -282,17 +257,21 @@
   }
 }
 
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 375px) {
   .game-rules {
     & .prizes div img {
       width: 37px;
+    }
+    & .prizes .about-prize {
+      padding-left: 2px;
+      padding-right: 10px;
     }
     & .rules img {
       width: 37px;
     }
     .rules {
       .rule-game {
-        margin-left: 5px;
+        margin-left: 13px;
       }
     }
   }

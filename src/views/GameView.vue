@@ -217,14 +217,15 @@ watch(
   }
 }
 .game-board {
+  padding: 0 20px;
   display: grid;
   overflow: hidden;
   max-height: 100%;
   height: 100%;
   align-content: center;
   justify-content: center;
-  grid-template-columns: repeat(3, 28%);
-  grid-template-rows: repeat(4, 23%);
+  grid-template-columns: repeat(3, 31%);
+  grid-template-rows: repeat(4, 1fr);
   grid-column-gap: 10px;
   grid-row-gap: 10px;
 }
@@ -232,7 +233,7 @@ watch(
 @media screen and (max-width: 320px) {
   .game-board {
     grid-template-columns: repeat(3, 27%);
-    grid-template-rows: repeat(4, 22%);
+    grid-template-rows: repeat(4, 1fr);
   }
 }
 
