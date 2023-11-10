@@ -101,7 +101,13 @@ watch(
       />
     </div>
   </div>
-  <div style="height: calc(100% - 150px); max-height: calc(100% - 150px)">
+  <div
+    style="
+      height: calc(100% - 140px);
+      max-height: calc(100% - 140px);
+      overflow: hidden;
+    "
+  >
     <transition-group tag="section" class="game-board" name="shuffle-card">
       <Card
         v-for="card in cardList"
@@ -140,6 +146,7 @@ watch(
 
 <style lang="scss" scoped>
 .game-status {
+  z-index: 0;
   padding: 0 20px 8px;
   display: flex;
   justify-content: space-between;
@@ -186,6 +193,7 @@ watch(
   }
 }
 .myProgress {
+  z-index: 0;
   height: 10px;
   width: auto;
   border-radius: 100px;

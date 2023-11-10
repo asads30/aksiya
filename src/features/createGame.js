@@ -25,6 +25,9 @@ export default function createGame(deck) {
       return true;
     } else if (!matchesFound.value && gameStore.countVisibleCard === 2) {
       gameStore.startedGame = false;
+      if (navigator in window) {
+        navigator.vibrate(300);
+      }
       return false;
     } else {
       return false;

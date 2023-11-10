@@ -2,7 +2,10 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import { createPinia } from "pinia";
 import router from "./router";
+import directives from "@/directives/index";
 import "@/styles/main.scss";
 
 const pinia = createPinia();
-createApp(App).use(router).use(pinia).mount("#app");
+const app = createApp(App);
+directives(app);
+app.use(router).use(pinia).mount("#app");
