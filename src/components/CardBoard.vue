@@ -68,20 +68,22 @@ const selectCard = () => {
     @click="selectCard"
   >
     <div class="card-face is-front" :class="{ 'is-border': !props.opened }">
-      <img
-        draggable="false"
-        class="card-image"
-        :srcset="`/images/${value}@2x.png 2x, /images/${value}.png 1x`"
-        :src="`/images/${value}.png`"
-        :alt="value"
-      />
-      <img
-        draggable="false"
-        v-if="matched"
-        src="/images/checkmark.svg"
-        class="icon-checkmark"
-        alt=""
-      />
+      <span v-tooltip:top.tooltip="value">
+        <img
+          draggable="false"
+          class="card-image"
+          :srcset="`/images/${value}@2x.png 2x, /images/${value}.png 1x`"
+          :src="`/images/${value}.png`"
+          :alt="value"
+        />
+        <img
+          draggable="false"
+          v-if="matched"
+          src="/images/checkmark.svg"
+          class="icon-checkmark"
+          alt=""
+        />
+      </span>
     </div>
     <div class="card-face is-back"></div>
   </div>
