@@ -11,4 +11,15 @@ module.exports = defineConfig({
       },
     },
   },
+  devServer: {
+    proxy: {
+      "/api": {
+        target: "https://dev-promo23.click.uz/api/",
+        changeOrigin: true,
+        pathRewrite: {
+          "^/api": "",
+        },
+      },
+    },
+  },
 });
