@@ -22,14 +22,8 @@ const cardItems = ref(null);
 
 const timelineGame = useMinuteCountDown();
 const gameStore = useGameStore();
-const {
-  newPlayer,
-  startedGame,
-  countVisibleCard,
-  userCanFlipCard,
-  countDown,
-  customAnimationEnded,
-} = storeToRefs(gameStore);
+const { newPlayer, startedGame, countVisibleCard, userCanFlipCard, countDown } =
+  storeToRefs(gameStore);
 const progressGame = ref(null);
 
 const isModalTimeEnded = ref(false);
@@ -48,20 +42,19 @@ watch(
       cardItems.value.$el.classList.add("a");
       setTimeout(() => {
         cardItems.value.$el.classList.remove("a");
-        customAnimationEnded.value = true;
-      }, 11000);
+        cardItems.value.$el.classList.add("b");
+        callBClass();
+      }, 3000);
     }
   }
 );
 
-watch(
-  () => customAnimationEnded.value,
-  (value) => {
-    if (value) {
-      gameStore.matchCardGame();
-    }
-  }
-);
+function callBClass() {
+  setTimeout(() => {
+    cardItems.value.$el.classList.remove("b");
+    gameStore.startGame();
+  }, 3000);
+}
 
 watch(
   () => timelineGame.timeEnded.value,

@@ -1,4 +1,3 @@
-import _ from "lodash";
 import { computed, ref } from "vue";
 import { useGameStore } from "@/stores/GameStore";
 
@@ -7,7 +6,6 @@ export default function createGame(deck) {
   const gameStore = useGameStore();
 
   const matchCardGame = () => {
-    deck.value = _.shuffle(deck.value);
     deck.value = deck.value.map((card, index) => {
       return {
         ...card,
