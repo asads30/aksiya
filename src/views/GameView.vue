@@ -9,10 +9,9 @@ import ModalWindow from "@/components/ui/ModalWindow.vue";
 import GameTitle from "@/components/GameTitle.vue";
 import HeaderComponent from "@/components/ui/Header.vue";
 import createDeck from "@/features/createDeck";
+import router from "@/router";
 
 const userSelection = ref([]);
-
-const isModalWinVisible = ref(false);
 const isModalLoseVisible = ref(false);
 
 const gameStore = useGameStore();
@@ -52,7 +51,8 @@ const flipCard = (payload) => {
 watch(matchesFound, (currentValue) => {
   if (currentValue === 1) {
     setTimeout(() => {
-      isModalWinVisible.value = true;
+      // isModalWinVisible.value = true;
+      router.push({ name: "prize" });
       launchConfetti();
     }, 3000);
   }
@@ -88,13 +88,6 @@ watch(
   },
   { deep: true }
 );
-const closeEndModal = () => {
-  if (isModalWinVisible.value) {
-    isModalWinVisible.value = false;
-  } else {
-    isModalLoseVisible.value = false;
-  }
-};
 
 watch(
   () => startedGame.value,
@@ -135,29 +128,8 @@ watch(
   </div>
   <ModalWindow
     btnName="Закрыть"
-    v-if="isModalWinVisible"
-    @close="closeEndModal"
-  >
-    <template v-slot:header>
-      <img
-        draggable="false"
-        src="@/assets/svg/end-survey.svg"
-        loading="lazy"
-        class="header-end-image"
-        alt=""
-      />
-      <p class="header-text">ПОЗДРАВЛЯЕМ!!!</p>
-      <div class="border-header"></div>
-    </template>
-    <template v-slot:body>
-      <p class="modal-body-content">Вы выиграли приз от компании клик</p>
-    </template>
-    <template v-slot:footer></template>
-  </ModalWindow>
-  <ModalWindow
-    btnName="Закрыть"
     v-if="isModalLoseVisible"
-    @close="closeEndModal"
+    @close="isModalLoseVisible = false"
   >
     <template v-slot:header>
       <img
@@ -181,7 +153,9 @@ watch(
 .game-container {
   display: flex;
   gap: 10px;
+  justify-content: space-between;
   flex-direction: column;
+  height: 100dvh;
   max-height: 100dvh;
   overflow: hidden;
 }

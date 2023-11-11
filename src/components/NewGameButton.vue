@@ -13,7 +13,7 @@ const startGame = () => {
     <button
       @click.once="startGame"
       :disabled="!gameStore.newPlayer"
-      :class="!gameStore.newPlayer ? 'btn-disabled' : 'btn-active ripple'"
+      :class="!gameStore.newPlayer ? 'btn-disabled' : 'btn-active'"
     >
       Начать игру
     </button>
@@ -52,28 +52,6 @@ const startGame = () => {
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-  }
-  .ripple {
-    position: relative;
-    overflow: hidden;
-  }
-  .ripple:before {
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.6);
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-  }
-  .ripple:focus:before {
-    transition: all 1s ease-out;
-    opacity: 0;
-    width: 160px;
-    height: 160px;
-    margin-top: -80px;
-    margin-left: -80px;
   }
 }
 </style>
