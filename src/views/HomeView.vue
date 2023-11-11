@@ -16,6 +16,9 @@ import HeaderComponent from "@/components/ui/Header.vue";
     <p style="user-select: all" class="web-session">
       {{ getCookie("web-session") }}
     </p>
+    <p style="user-select: all" class="web-session">
+      {{ getCookie() }}
+    </p>
     <div @click="$router.push({ name: 'game' })" class="bottom-content">
       <div class="text-bottom">
         <p class="attempts">5 попыток</p>
