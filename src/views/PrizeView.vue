@@ -103,57 +103,39 @@
   }
   & .prize-animation {
     animation-name: example;
-    animation-duration: 1.1s;
+    animation-duration: 7s;
     animation-iteration-count: infinite;
   }
   @keyframes example {
     0% {
-      filter: brightness(1);
-      filter: contrast(1);
-      -webkit-filter: brightness(1);
-      -webkit-filter: contrast(1);
+      transform: rotate(0deg);
     }
     15% {
-      filter: brightness(0.4);
-      filter: contrast(0.4);
-      -webkit-filter: brightness(0.4);
-      -webkit-filter: contrast(0.4);
+      transform: rotate(40deg);
     }
     25% {
-      filter: brightness(0.5);
-      filter: contrast(0.5);
-      -webkit-filter: brightness(0.5);
-      -webkit-filter: contrast(0.5);
+      transform: rotate(80deg);
     }
-    40% {
-      filter: brightness(0.6);
-      filter: contrast(0.6);
-      -webkit-filter: brightness(0.6);
-      -webkit-filter: contrast(0.6);
+    35% {
+      transform: rotate(120deg);
+    }
+    45% {
+      transform: rotate(160deg);
     }
     55% {
-      filter: brightness(0.7);
-      filter: contrast(0.7);
-      -webkit-filter: brightness(0.7);
-      -webkit-filter: contrast(0.7);
+      transform: rotate(200deg);
+    }
+    65% {
+      transform: rotate(240deg);
     }
     75% {
-      filter: brightness(0.8);
-      filter: contrast(0.8);
-      -webkit-filter: brightness(0.8);
-      -webkit-filter: contrast(0.8);
+      transform: rotate(300deg);
     }
-    90% {
-      filter: brightness(0.9);
-      filter: contrast(0.9);
-      -webkit-filter: brightness(0.9);
-      -webkit-filter: contrast(0.9);
+    85% {
+      transform: rotate(340deg);
     }
     100% {
-      filter: brightness(1);
-      filter: contrast(1);
-      -webkit-filter: brightness(1);
-      -webkit-filter: contrast(1);
+      transform: rotate(360deg);
     }
   }
 }
@@ -163,12 +145,17 @@
 import HeaderComponent from "@/components/ui/Header.vue";
 import { storeToRefs } from "pinia";
 import { useGameStore } from "@/stores/GameStore";
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
+import { launchConfetti } from "@/utilities/confetti";
 
 const gameStore = useGameStore();
 const { cardList } = storeToRefs(gameStore);
 
 const winPrizeData = computed(() => {
   return cardList.value?.find((prize) => prize.visible === true);
+});
+
+onMounted(() => {
+  launchConfetti();
 });
 </script>
