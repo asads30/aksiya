@@ -2,7 +2,6 @@
 import { ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { useGameStore } from "@/stores/GameStore";
-import { launchConfetti } from "@/utilities/confetti";
 import GameBoard from "@/components/GameBoard.vue";
 import NewGameButton from "@/components/NewGameButton.vue";
 import ModalWindow from "@/components/ui/ModalWindow.vue";
@@ -53,7 +52,6 @@ watch(matchesFound, (currentValue) => {
     setTimeout(() => {
       // isModalWinVisible.value = true;
       router.push({ name: "prize" });
-      launchConfetti();
     }, 3000);
   }
 });
@@ -191,23 +189,24 @@ watch(
   }
 }
 .game-board {
-  padding: 0 20px;
   display: grid;
   overflow: hidden;
   max-height: 100%;
   height: 100%;
   align-content: center;
   justify-content: center;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  width: 100%;
+  aspect-ratio: 1/1;
+  grid-template-columns: repeat(3, 26%);
+  grid-template-rows: repeat(4, 22%);
   grid-column-gap: 10px;
   grid-row-gap: 10px;
 }
 
 @media screen and (max-width: 320px) {
   .game-board {
-    grid-template-columns: repeat(3, 27%);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 24%);
+    grid-template-rows: repeat(4, 22%);
   }
 }
 
