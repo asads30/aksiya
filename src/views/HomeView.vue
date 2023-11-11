@@ -1,6 +1,38 @@
 <script setup>
 import { getCookie } from "@/utilities/util";
 import HeaderComponent from "@/components/ui/Header.vue";
+import { computed, reactive } from "vue";
+import { getMeUserData } from "@/services/app.api";
+import { useAppStore } from "@/stores/AppStore";
+import { storeToRefs } from "pinia";
+
+const appStore = useAppStore();
+const { webSession } = storeToRefs(appStore);
+
+const cookie = computed(() => getCookie("web-session"));
+const data = reactive({
+  web_session: cookie.value ? cookie.value : webSession.value,
+  active: 1,
+});
+// const getUserInfo = () => {
+//   return postMeUserData(`web_session=${cookie.value}`).then((response) => {
+//     console.log(response);
+//   });
+// };
+
+async function getUserInfo() {
+  try {
+    const response = await getMeUserData(data);
+    console.log(response.data);
+    appStore.setWebSession(response.data?.web_session);
+  } catch (err) {
+    console.log(err);
+  }
+}
+getUserInfo();
+// if (!store.state.questionsList?.length) {
+//   store.dispatch("getQuestionsList", queryQuestionsList);
+// }
 </script>
 
 <template>
@@ -16,9 +48,9 @@ import HeaderComponent from "@/components/ui/Header.vue";
     <p style="user-select: all" class="web-session">
       {{ getCookie("web-session") }}
     </p>
-    <p style="user-select: all" class="web-session">
-      {{ getCookie() }}
-    </p>
+    <!--    <p style="user-select: all" class="web-session">-->
+    <!--      {{ getCookie() }}-->
+    <!--    </p>-->
     <div @click="$router.push({ name: 'game' })" class="bottom-content">
       <div class="text-bottom">
         <p class="attempts">5 попыток</p>
