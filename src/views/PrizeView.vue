@@ -2,28 +2,26 @@
   <div class="header">
     <HeaderComponent center center-text="Ваш приз"></HeaderComponent>
   </div>
-  <div style="position: relative; z-index: 1000" class="winners-container">
+  <div class="winners-container">
     <div>
       <p class="winner-title">Поздравляем, вы выиграли!</p>
-      <p class="winner-prize">{{ winPrizeData.value }}</p>
+      <p class="winner-prize">{{ winPrizeData?.value }}</p>
     </div>
-    <div class="img-prize">
+    <div style="position: relative; z-index: 1000" class="img-prize">
       <img
-        :srcset="`/images/${winPrizeData.value}@2x.png 2x, /images/${winPrizeData.value}.png 1x`"
-        :src="`/images/${winPrizeData.value}.png`"
-        :alt="winPrizeData.value"
+        :srcset="`/images/${winPrizeData?.value}@2x.png 2x, /images/${winPrizeData?.value}.png 1x`"
+        :src="`/images/${winPrizeData?.value}.png`"
+        :alt="winPrizeData?.value"
       />
     </div>
     <img
       class="prize-animation"
       style="
         position: absolute;
-        z-index: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-        width: 100%;
+        top: 50%;
+        left: 50%;
+        margin-top: -415px;
+        margin-left: -470px;
       "
       src="@/assets/PrizeAnimation.svg"
       alt=""
@@ -103,7 +101,8 @@
   }
   & .prize-animation {
     animation-name: example;
-    animation-duration: 7s;
+    animation-duration: 10s;
+    animation-timing-function: linear;
     animation-iteration-count: infinite;
   }
   @keyframes example {
