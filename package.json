@@ -9,12 +9,12 @@
   },
   "dependencies": {
     "axios": "^1.6.1",
-    "axios-extensions": "^3.1.6",
     "canvas-confetti": "^1.9.0",
     "core-js": "^3.8.3",
     "pinia": "^2.1.7",
     "vue": "^3.2.13",
-    "vue-router": "^4.0.3"
+    "vue-router": "^4.0.3",
+    "vue3-whr-ripple-directive": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

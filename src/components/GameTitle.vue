@@ -1,12 +1,13 @@
 <template>
   <div class="game-rules">
-    <div class="prizes">
+    <div v-ripple.500="'rgba(255, 255, 255, 0.35)'" class="prizes">
       <div>
         <img src="@/assets/svg/Prize.svg" draggable="false" alt="" />
         <p class="about-prize">О призах</p>
       </div>
     </div>
     <div
+      v-ripple.500="'rgba(255, 255, 255, 0.35)'"
       data-bs-toggle="offcanvas"
       data-bs-target="#offcanvasBottom"
       aria-controls="offcanvasBottom"
