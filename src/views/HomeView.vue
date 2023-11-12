@@ -51,7 +51,11 @@ getUserInfo();
     <!--    <p style="user-select: all" class="web-session">-->
     <!--      {{ getCookie() }}-->
     <!--    </p>-->
-    <div @click="$router.replace({ name: 'game' })" class="bottom-content">
+    <div
+      v-ripple.400="'rgba(80,79,79,0.35)'"
+      @click="$router.replace({ name: 'game' })"
+      class="bottom-content"
+    >
       <div class="text-bottom">
         <p class="attempts">5 попыток</p>
         <p class="start-game">

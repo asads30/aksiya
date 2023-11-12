@@ -1,4 +1,4 @@
-import tooltipDirective from "./Tooltip/tooltip";
+import tooltipDirective from "./tooltip";
 
 // register all directives
 const directives = (app) => {
