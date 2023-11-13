@@ -12,7 +12,7 @@ const startGame = () => {
   <div class="btn-game">
     <button
       @click.once="startGame"
-      v-ripple.500="'rgba(255, 255, 255, 0.35)'"
+      v-ripple.click.500="'rgba(255, 255, 255, 0.35)'"
       :disabled="!gameStore.newPlayer"
       :class="!gameStore.newPlayer ? 'btn-disabled' : 'btn-active'"
     >

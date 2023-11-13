@@ -32,8 +32,8 @@ const router = createRouter({
 
 router.beforeEach(async (to, from) => {
   const gameStore = useGameStore();
-  const { startedGame } = storeToRefs(gameStore);
-  if (startedGame.value && from.name === "game" && to.name === "home") {
+  const { newPlayer } = storeToRefs(gameStore);
+  if (!newPlayer.value && from.name === "game" && to.name === "home") {
     return false;
   }
 });

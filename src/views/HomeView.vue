@@ -52,7 +52,7 @@ getUserInfo();
     <!--      {{ getCookie() }}-->
     <!--    </p>-->
     <div
-      v-ripple.400="'rgba(80,79,79,0.35)'"
+      v-ripple.click.400="'rgba(80,79,79,0.35)'"
       @click="$router.push({ name: 'game' })"
       class="bottom-content"
     >
