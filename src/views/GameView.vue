@@ -102,12 +102,7 @@ watch(
 <template>
   <div class="game-container">
     <div style="max-height: 70px; height: 70px; overflow: hidden">
-      <HeaderComponent
-        center-text="Найди пару"
-        center
-        left
-        leftLink="/"
-      ></HeaderComponent>
+      <HeaderComponent center-text="Найди пару" center left></HeaderComponent>
     </div>
     <div
       style="

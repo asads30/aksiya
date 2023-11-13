@@ -2,44 +2,7 @@
   <div class="aheader">
     <div class="container">
       <div class="header-left">
-        <router-link v-if="left && leftText" to>
-          <svg
-            width="9"
-            height="16"
-            viewBox="0 0 9 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            class="black"
-            v-if="color === 'black'"
-          >
-            <path
-              d="M8.00004 14.6668L1.33337 8.00016L8.00004 1.3335"
-              stroke="white"
-              stroke-width="2"
-              stroke-miterlimit="10"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-          <svg
-            width="9"
-            height="16"
-            viewBox="0 0 9 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            v-else
-          >
-            <path
-              d="M8.00004 14.6668L1.33337 8.00016L8.00004 1.3335"
-              stroke="white"
-              stroke-width="2"
-              stroke-miterlimit="10"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </router-link>
-        <router-link v-if="left && !leftText" to>
+        <router-link v-if="left && !leftText" to="/">
           <svg
             width="9"
             height="16"

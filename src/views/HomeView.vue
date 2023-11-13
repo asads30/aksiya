@@ -2,7 +2,7 @@
 import { getCookie } from "@/utilities/util";
 import HeaderComponent from "@/components/ui/Header.vue";
 import { computed, reactive } from "vue";
-import { getMeUserData } from "@/services/app.api";
+import { postMeUserData } from "@/services/app.api";
 import { useAppStore } from "@/stores/AppStore";
 import { storeToRefs } from "pinia";
 
@@ -22,7 +22,7 @@ const data = reactive({
 
 async function getUserInfo() {
   try {
-    const response = await getMeUserData(data);
+    const response = await postMeUserData(data);
     console.log(response.data);
     appStore.setWebSession(response.data?.web_session);
   } catch (err) {
@@ -53,7 +53,7 @@ getUserInfo();
     <!--    </p>-->
     <div
       v-ripple.400="'rgba(80,79,79,0.35)'"
-      @click="$router.replace({ name: 'game' })"
+      @click="$router.push({ name: 'game' })"
       class="bottom-content"
     >
       <div class="text-bottom">

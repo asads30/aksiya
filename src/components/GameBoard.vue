@@ -51,13 +51,14 @@ watch(
     }
   }
 );
+
 watch(
   () => countDown.value,
   () => {
     if (countDown.value < 1) {
-      cardItems.value.$el.classList.add("a");
+      cardItems.value.$el?.classList.add("a");
       setTimeout(() => {
-        cardItems.value.$el.classList.remove("a");
+        cardItems.value.$el?.classList.remove("a");
         gameStore.startGame();
       }, 6000);
     }
