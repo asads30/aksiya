@@ -48,9 +48,9 @@ getUserInfo();
     <p style="user-select: all" class="web-session">
       {{ getCookie("web-session") }}
     </p>
-    <!--    <p style="user-select: all" class="web-session">-->
-    <!--      {{ getCookie() }}-->
-    <!--    </p>-->
+    <p style="user-select: all" class="web-session">
+      {{ getCookie }}
+    </p>
     <div
       v-ripple.click.400="'rgba(80,79,79,0.35)'"
       @click="$router.push({ name: 'game' })"
