@@ -72,6 +72,7 @@ watch(
       progressGame.value.classList.add("timeline-anim");
       timelineGame.startCountDownGame();
     } else {
+      newPlayer.value = true;
       clearInterval(timelineGame.intervalTimeout.value);
     }
   }
