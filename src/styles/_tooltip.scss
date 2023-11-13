@@ -142,7 +142,6 @@ $gray: #495057;
 /* KEYFRAMES */
 @keyframes tooltips-vert {
   to {
-    z-index: 10000;
     opacity: 0.9;
     transform: translate(-50%, 0);
   }

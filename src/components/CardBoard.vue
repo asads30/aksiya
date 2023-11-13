@@ -1,11 +1,14 @@
 <script setup>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { useGameStore } from "@/stores/GameStore";
 import { storeToRefs } from "pinia";
 
 const gameStore = useGameStore();
-const { countVisibleCard, startedGame } = storeToRefs(gameStore);
+const { countVisibleCard, startedGame, cardFlipped } = storeToRefs(gameStore);
 
+const tooltipText = ref(
+  "Lorem ipsum ipsum Lorem ipsum ipsum Lorem ipsum ipsum Lorem ipsum ipsum Lorem ipsum ipsum Lorem ipsum ipsum ipsum Lorem ipsum ipsum Lorem ipsum ipsum Lorem ipsum ipsum Lorem ipsum ipsum Lorem"
+);
 const props = defineProps({
   matched: {
     type: Boolean,
@@ -31,7 +34,7 @@ const props = defineProps({
 const emits = defineEmits(["select-card"]);
 
 const flippedStyles = computed(() => {
-  if (!startedGame.value) {
+  if (cardFlipped.value) {
     return "is-flipped";
   } else {
     return false;
@@ -68,7 +71,7 @@ const selectCard = () => {
     @click="selectCard"
   >
     <div class="card-face is-front" :class="{ 'is-border': !props.opened }">
-      <span v-tooltip:top.tooltip="value">
+      <span v-tooltip:top.tooltip="tooltipText">
         <img
           draggable="false"
           class="card-image"

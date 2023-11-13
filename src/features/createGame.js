@@ -1,4 +1,3 @@
-import _ from "lodash";
 import { computed, ref } from "vue";
 import { useGameStore } from "@/stores/GameStore";
 
@@ -7,7 +6,7 @@ export default function createGame(deck) {
   const gameStore = useGameStore();
 
   const matchCardGame = () => {
-    deck.value = _.shuffle(deck.value);
+    gameStore.cardFlipped = false;
     deck.value = deck.value.map((card, index) => {
       return {
         ...card,
@@ -16,14 +15,15 @@ export default function createGame(deck) {
         visible: false,
       };
     });
-    gameStore.startedGame = true;
   };
 
   const status = computed(() => {
     if (matchesFound.value === 1 && gameStore.countVisibleCard === 2) {
       gameStore.startedGame = false;
+      gameStore.cardFlipped = true;
       return true;
     } else if (!matchesFound.value && gameStore.countVisibleCard === 2) {
+      gameStore.cardFlipped = true;
       gameStore.startedGame = false;
       if (navigator in window) {
         navigator.vibrate(300);
