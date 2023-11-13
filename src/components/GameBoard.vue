@@ -66,7 +66,7 @@ watch(
 );
 
 watch(
-  () => startedGame.value,
+  () => userCanFlipCard.value,
   (value) => {
     if (value) {
       progressGame.value.classList.add("timeline-anim");

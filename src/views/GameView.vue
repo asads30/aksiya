@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { useGameStore } from "@/stores/GameStore";
 import GameBoard from "@/components/GameBoard.vue";
@@ -50,7 +50,7 @@ const flipCard = (payload) => {
 watch(matchesFound, (currentValue) => {
   if (currentValue === 1) {
     setTimeout(() => {
-      // isModalWinVisible.value = true;
+      startedGame.value = false;
       router.push({ name: "prize" });
     }, 3000);
   }
@@ -70,6 +70,7 @@ watch(
         userCanFlipCard.value = false;
       } else {
         setTimeout(() => {
+          startedGame.value = false;
           isModalLoseVisible.value = true;
         }, 3000);
       }

@@ -17,7 +17,6 @@ export const useGameStore = defineStore("GameStore", {
     const countVisibleCard = ref(0);
     const countDown = ref(4);
     const startGame = () => {
-      startedGame.value = true;
       countVisibleCard.value = 0;
       userCanFlipCard.value = true;
       cardFlipped.value = false;
@@ -25,6 +24,7 @@ export const useGameStore = defineStore("GameStore", {
 
     const startCountDown = () => {
       newPlayer.value = false;
+      startedGame.value = true;
       let x = setInterval(() => {
         countDown.value -= 1;
         if (countDown.value < 0) {

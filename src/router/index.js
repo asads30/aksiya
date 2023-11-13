@@ -12,6 +12,11 @@ const routes = [
     path: "/game",
     name: "game",
     component: () => import("@/views/GameView"),
+    beforeEnter: (to, from) => {
+      if (to.name === "game" && from.name === "prize") {
+        return false;
+      }
+    },
   },
   {
     path: "/prize",
@@ -37,8 +42,8 @@ const router = createRouter({
 
 router.beforeEach(async (to, from) => {
   const gameStore = useGameStore();
-  const { newPlayer } = storeToRefs(gameStore);
-  if (!newPlayer.value && from.name === "game" && to.name === "home") {
+  const { startedGame } = storeToRefs(gameStore);
+  if (startedGame.value && from.name === "game" && to.name === "home") {
     return false;
   }
 });
