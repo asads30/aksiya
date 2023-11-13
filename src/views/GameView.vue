@@ -121,7 +121,7 @@ watch(
     </div>
     <NewGameButton />
   </div>
-  <div v-if="countDown <= 5 && countDown >= 1" class="started-game-count">
+  <div v-if="countDown <= 3 && countDown >= 1" class="started-game-count">
     <p class="count-time">{{ countDown }}</p>
   </div>
   <ModalWindow

@@ -20,10 +20,17 @@ defineProps({
 
 const timelineGame = useMinuteCountDown();
 const gameStore = useGameStore();
-const { newPlayer, startedGame, countVisibleCard, userCanFlipCard } =
-  storeToRefs(gameStore);
+const {
+  newPlayer,
+  startedGame,
+  countVisibleCard,
+  userCanFlipCard,
+  countDown,
+  cardFlipped,
+} = storeToRefs(gameStore);
 const progressGame = ref(null);
 
+const cardItems = ref(null);
 const isModalTimeEnded = ref(false);
 const emits = defineEmits(["flip-card"]);
 
@@ -40,6 +47,19 @@ watch(
       isModalTimeEnded.value = true;
       userCanFlipCard.value = false;
       startedGame.value = false;
+      cardFlipped.value = true;
+    }
+  }
+);
+watch(
+  () => countDown.value,
+  () => {
+    if (countDown.value < 1) {
+      cardItems.value.$el.classList.add("a");
+      setTimeout(() => {
+        cardItems.value.$el.classList.remove("a");
+        gameStore.startGame();
+      }, 6000);
     }
   }
 );
@@ -108,7 +128,12 @@ watch(
       overflow: hidden;
     "
   >
-    <transition-group tag="section" class="game-board" name="shuffle-card">
+    <transition-group
+      tag="section"
+      class="game-board"
+      ref="cardItems"
+      name="shuffle-card"
+    >
       <Card
         v-for="card in cardList"
         :key="`${card.value}-${card.variant}`"
