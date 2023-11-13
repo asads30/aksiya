@@ -126,7 +126,7 @@
           </div>
         </div>
       </div>
-      <div class="bottom">
+      <div v-ripple.click.400="'rgba(47,47,47,0.35)'" class="bottom">
         <button class="play" @click="goGame">
           <div class="play-left">
             <div class="play-left-title">Играть</div>
