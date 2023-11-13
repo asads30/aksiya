@@ -23,7 +23,7 @@ const getCookie = function (name = null) {
   let arr,
     reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
   if ((arr = document.cookie.match(reg))) return arr[2];
-  else return "b450be45-bb65-45fb-b543-c1dbb0e8e528";
+  else return null;
 };
 
 // const getIMGPath = function (img) {
