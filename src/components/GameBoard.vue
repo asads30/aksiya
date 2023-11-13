@@ -22,8 +22,14 @@ const cardItems = ref(null);
 
 const timelineGame = useMinuteCountDown();
 const gameStore = useGameStore();
-const { newPlayer, startedGame, countVisibleCard, userCanFlipCard, countDown } =
-  storeToRefs(gameStore);
+const {
+  newPlayer,
+  startedGame,
+  countVisibleCard,
+  userCanFlipCard,
+  countDown,
+  cardFlipped,
+} = storeToRefs(gameStore);
 const progressGame = ref(null);
 
 const isModalTimeEnded = ref(false);
@@ -63,6 +69,7 @@ watch(
       isModalTimeEnded.value = true;
       userCanFlipCard.value = false;
       startedGame.value = false;
+      cardFlipped.value = true;
     }
   }
 );

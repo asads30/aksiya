@@ -4,7 +4,7 @@ import { useGameStore } from "@/stores/GameStore";
 import { storeToRefs } from "pinia";
 
 const gameStore = useGameStore();
-const { countVisibleCard, startedGame } = storeToRefs(gameStore);
+const { countVisibleCard, startedGame, cardFlipped } = storeToRefs(gameStore);
 
 const props = defineProps({
   matched: {
@@ -31,7 +31,7 @@ const props = defineProps({
 const emits = defineEmits(["select-card"]);
 
 const flippedStyles = computed(() => {
-  if (!startedGame.value) {
+  if (cardFlipped.value) {
     return "is-flipped";
   } else {
     return false;
