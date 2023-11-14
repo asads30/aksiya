@@ -32,7 +32,7 @@
         <div class="home-info">
           <div class="home-chance">
             <p style="user-select: all; color: white">
-              {{ getCookie }}
+              {{ getCookie() }}
             </p>
             <div class="home-chance-icon">⭐️</div>
             <div class="home-chance-text">
