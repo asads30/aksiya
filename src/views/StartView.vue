@@ -197,10 +197,10 @@
           align-items: center;
           justify-content: center;
           .nav-link {
-            height: 54px;
+            height: 44px;
             width: 90%;
+            padding: 5px;
             border: 0;
-            padding: 0;
             color: #fff;
             white-space: break-spaces;
             text-align: center;

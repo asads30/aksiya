@@ -31,6 +31,9 @@
         </div>
         <div class="home-info">
           <div class="home-chance">
+            <p style="user-select: all; color: white">
+              {{ getCookie }}
+            </p>
             <div class="home-chance-icon">⭐️</div>
             <div class="home-chance-text">
               <div class="home-chance-number">144</div>
