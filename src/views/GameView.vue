@@ -24,10 +24,10 @@ const {
   countVisibleCard,
 } = storeToRefs(gameStore);
 
-const screenWidth = computed(()=> {
-  let a = window.screen.width - 60
-  return a / 3
-})
+const screenWidth = computed(() => {
+  let a = window.screen.width - 60;
+  return a / 3;
+});
 const deckCard = createDeck();
 const flipCard = (payload) => {
   if (userCanFlipCard.value) {
@@ -100,7 +100,12 @@ watch(
     <HeaderComponent center-text="Найди пару" center left></HeaderComponent>
     <div class="game-wrapper">
       <GameTitle />
-      <GameBoard :cardList="cardList" :status="status" @flip-card="flipCard" :screenWidth="screenWidth" />
+      <GameBoard
+        :cardList="cardList"
+        :status="status"
+        @flip-card="flipCard"
+        :screenWidth="screenWidth"
+      />
     </div>
     <NewGameButton />
   </div>
@@ -233,7 +238,7 @@ watch(
   max-height: 100dvh;
   overflow: hidden;
 }
-.game-wrapper{
+.game-wrapper {
   height: calc(100dvh - 170px);
   max-height: calc(100dvh - 170px);
   overflow-x: hidden;
@@ -274,14 +279,12 @@ watch(
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  justify-content: space-between;
   overflow: hidden;
   max-height: 100%;
   height: 100%;
   justify-content: center;
   width: 100%;
 }
-
 .header-end-image {
   display: flex;
   align-items: center;
@@ -312,5 +315,56 @@ watch(
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+.offcanvas-btn {
+  width: 34px;
+  height: 6px;
+  margin-top: 20px;
+  border-radius: 24px;
+  background-color: #e9eaea;
+}
+.info-prize {
+  margin-bottom: 15px;
+  color: #04021d;
+  font-family: "Golos Text", sans-serif !important;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 133.333% */
+  letter-spacing: 0.5px;
+}
+.prizes-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  & div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+  }
+  & .prize-item {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    position: relative;
+    background: #34353f;
+    & img {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+    }
+  }
+  & .prize-text {
+    color: #04021d;
+    font-family: "Golos Text", sans-serif !important;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    align-self: center;
+  }
 }
 </style>

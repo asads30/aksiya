@@ -30,7 +30,7 @@ import HeaderComponent from "@/components/ui/Header.vue";
   <div class="history-items-referall">
     <p class="date">21.07.2023</p>
     <div class="referall-data">
-      <div style="display: flex; align-items: center; gap: 8px">
+      <div class="referall-time">
         <img src="@/assets/circleCheck.svg" alt="" />
         <p class="time">14:01</p>
       </div>
@@ -43,7 +43,7 @@ import HeaderComponent from "@/components/ui/Header.vue";
   <div class="history-items-referall">
     <p class="date">20.08.2023</p>
     <div class="referall-data">
-      <div style="display: flex; align-items: center; gap: 8px">
+      <div class="referall-time">
         <img src="@/assets/circleCheck.svg" alt="" />
         <p class="time">14:10</p>
       </div>
@@ -154,6 +154,11 @@ import HeaderComponent from "@/components/ui/Header.vue";
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+  & .referall-time {
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
   & .border-bottom {
     position: absolute;

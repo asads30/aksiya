@@ -35,11 +35,11 @@ $gray: #495057;
     Let the content set the size of the tooltips
     but this will also keep them from being obnoxious
     */
-    min-width: 3em;
+    min-width: 8em;
     max-width: 21em;
-    white-space: nowrap;
+    white-space: break-spaces;
     overflow: hidden;
-    text-overflow: ellipsis;
+    //text-overflow: ellipsis;
     padding: 0.5rem;
     border-radius: 0.3rem;
     box-shadow: 0 1em 2em -0.5em rgba(0, 0, 0, 0.35);

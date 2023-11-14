@@ -6,7 +6,7 @@ export const useMinuteCountDown = () => {
   const intervalTimeout = ref(null);
   const startCountDownGame = () => {
     function addMinutes(date, minutes) {
-      date.setSeconds(date.getSeconds() + 1);
+      date.setSeconds(date.getSeconds() + 3);
       date.setMinutes(date.getMinutes() + minutes);
       return date;
     }

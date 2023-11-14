@@ -4,10 +4,10 @@ import { useGameStore } from "@/stores/GameStore";
 import { storeToRefs } from "pinia";
 
 const gameStore = useGameStore();
-const { countVisibleCard, startedGame, cardFlipped } = storeToRefs(gameStore);
+const { countVisibleCard, startedGame } = storeToRefs(gameStore);
 
 const tooltipText = ref(
-  "Lorem ipsum ipsum Lorem ipsum ipsum Lorem ipsum ipsum Lorem ipsum ipsum Lorem ipsum ipsum Lorem ipsum ipsum ipsum Lorem ipsum ipsum Lorem ipsum ipsum Lorem ipsum ipsum Lorem ipsum ipsum Lorem"
+  "Lorem ipsum ipsum Lorem ipsum ipsum Lorem ipsum ipsum Lorem ipsum ipsum"
 );
 const props = defineProps({
   matched: {
@@ -31,13 +31,19 @@ const props = defineProps({
     default: false,
   },
   cardSize: {
-    type: Number
-  }
+    type: Number,
+  },
 });
 const emits = defineEmits(["select-card"]);
 
+const widthCard = computed(() => {
+  return +props.cardSize + "px";
+});
+const heightCard = computed(() => {
+  return +props.cardSize + "px";
+});
 const flippedStyles = computed(() => {
-  if (cardFlipped.value) {
+  if (props.visible) {
     return "is-flipped";
   } else {
     return false;
@@ -45,7 +51,7 @@ const flippedStyles = computed(() => {
 });
 
 const borderedCard = computed(() => {
-  if (props.opened && countVisibleCard.value > 0) {
+  if (props.opened && countVisibleCard.value <= 2) {
     return "border:4px solid #0073ff;border-radius: 12px;transform: rotateY(180deg);";
   } else {
     return false;
@@ -69,12 +75,12 @@ const selectCard = () => {
 <template>
   <div
     class="card"
-    :style="'width: ' + cardSize + 'px;height: ' + cardSize + 'px;'"
+    :style="borderedCard"
     :class="flippedStyles"
     @click="selectCard"
   >
     <div class="card-face is-front" :class="{ 'is-border': !props.opened }">
-      <span v-tooltip:top.tooltip="tooltipText">
+      <span v-tooltip.top="!startedGame ? tooltipText : null">
         <img
           draggable="false"
           class="card-image"
@@ -97,6 +103,8 @@ const selectCard = () => {
 
 <style>
 .card {
+  width: v-bind(widthCard);
+  height: v-bind(heightCard);
   position: relative;
   border-radius: 12px;
   transition: 0.5s transform ease-in;

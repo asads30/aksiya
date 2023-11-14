@@ -17,39 +17,33 @@ const props = defineProps({
     required: true,
   },
   screenWidth: {
-    type: String,
+    type: Number,
     required: true,
   },
 });
 
 const timelineGame = useMinuteCountDown();
 const gameStore = useGameStore();
-const {
-  newPlayer,
-  startedGame,
-  countVisibleCard,
-  userCanFlipCard,
-  countDown,
-  cardFlipped,
-} = storeToRefs(gameStore);
+const { newPlayer, startedGame, countVisibleCard, userCanFlipCard, countDown } =
+  storeToRefs(gameStore);
 const progressGame = ref(null);
 
 const cardItems = ref(null);
 const isModalTimeEnded = ref(false);
 const emits = defineEmits(["flip-card"]);
 
-const animSize1 = computed(()=>{
-  let a = (props.screenWidth + 10)
-  return '-' + a + 'px';
-})
-const animSize2 = computed(()=>{
-  let a = (props.screenWidth + 10) * 2
-  return '-' + a + 'px';
-})
-const animSize3 = computed(()=>{
-  let a = (props.screenWidth + 10) * 3
-  return '-' + a + 'px';
-})
+const animSize1 = computed(() => {
+  let a = props.screenWidth + 10;
+  return "-" + a + "px";
+});
+const animSize2 = computed(() => {
+  let a = (props.screenWidth + 10) * 2;
+  return "-" + a + "px";
+});
+const animSize3 = computed(() => {
+  let a = (props.screenWidth + 10) * 3;
+  return "-" + a + "px";
+});
 const selectCard = (payload) => {
   if (!newPlayer.value) {
     emits("flip-card", payload);
@@ -63,7 +57,6 @@ watch(
       isModalTimeEnded.value = true;
       userCanFlipCard.value = false;
       startedGame.value = false;
-      cardFlipped.value = true;
     }
   }
 );
@@ -116,8 +109,8 @@ watch(
           : timelineGame.secondsTimeLine.value === 0
           ? "01:00"
           : timelineGame.secondsTimeLine.value < 0
-          ? `01:00`
-          : "00:00"
+          ? `00:00`
+          : "01:00"
       }}
     </p>
   </div>
@@ -139,7 +132,7 @@ watch(
       />
     </div>
   </div>
-  <div class="gameboard-wrapper">
+  <div>
     <transition-group
       tag="section"
       class="game-board"

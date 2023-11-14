@@ -85,7 +85,7 @@
                     required
                     minlength="5"
                     maxlength="8"
-                    placeholder=""
+                    placeholder="Введите код приглашения"
                   />
                 </form>
               </div>
@@ -273,6 +273,13 @@
         font-weight: 700;
         line-height: normal;
         letter-spacing: 2px;
+      }
+      .promo-input::placeholder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: -5px;
+        font-size: 15px;
       }
       //.promo-input:required {
       //  border: 1px solid #ff706f;

@@ -10,7 +10,6 @@ export const useGameStore = defineStore("GameStore", {
     const { newPlayer, matchCardGame, matchesFound, status } =
       createGame(cardList);
 
-    const cardFlipped = ref(true);
     const customAnimationEnded = ref(false);
     const userCanFlipCard = ref(false);
     const startedGame = ref(false);
@@ -19,23 +18,21 @@ export const useGameStore = defineStore("GameStore", {
     const startGame = () => {
       countVisibleCard.value = 0;
       userCanFlipCard.value = true;
-      cardFlipped.value = false;
     };
 
     const startCountDown = () => {
       newPlayer.value = false;
       startedGame.value = true;
+      matchCardGame();
       let x = setInterval(() => {
         countDown.value -= 1;
         if (countDown.value < 0) {
-          matchCardGame();
           clearInterval(x);
         }
       }, 1000);
     };
 
     return {
-      cardFlipped,
       userCanFlipCard,
       startedGame,
       countDown,
