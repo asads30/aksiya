@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref, watch } from "vue";
+import { ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { useGameStore } from "@/stores/GameStore";
 import GameBoard from "@/components/GameBoard.vue";
