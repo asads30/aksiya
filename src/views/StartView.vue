@@ -137,7 +137,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-image: url("@/assets/Стартоваястраница.png");
+  background-image: url("@/assets/StartPage.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
