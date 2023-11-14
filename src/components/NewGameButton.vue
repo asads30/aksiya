@@ -23,14 +23,14 @@ const startGame = () => {
 
 <style lang="scss" scoped>
 .btn-game {
-  padding: 0 20px 15px;
+  padding: 20px;
   & .btn-active {
     outline: none;
     border: none;
     border-radius: 10px;
     background-color: #0073ff;
-    height: 40px;
-    line-height: 40px;
+    height: 50px;
+    line-height: 50px;
     border: 0;
     width: 100%;
     color: #ffffff;
@@ -43,7 +43,7 @@ const startGame = () => {
     border: none;
     border-radius: 10px;
     background-color: #2c2d35;
-    height: 40px;
+    height: 50px;
     border: 0;
     width: 100%;
     color: #575965;

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { useGameStore } from "@/stores/GameStore";
 import GameBoard from "@/components/GameBoard.vue";
@@ -24,6 +24,10 @@ const {
   countVisibleCard,
 } = storeToRefs(gameStore);
 
+const screenWidth = computed(()=> {
+  let a = window.screen.width - 60
+  return a / 3
+})
 const deckCard = createDeck();
 const flipCard = (payload) => {
   if (userCanFlipCard.value) {
@@ -62,7 +66,6 @@ watch(
     if (currentValue.length === 2) {
       const cardOne = currentValue[0];
       const cardTwo = currentValue[1];
-      // Disable ability to flip cards
       userCanFlipCard.value = false;
       if (cardOne.faceValue === cardTwo.faceValue) {
         cardList.value[cardOne.position].matched = true;
@@ -74,14 +77,6 @@ watch(
           isModalLoseVisible.value = true;
         }, 3000);
       }
-      // else {
-      //   setTimeout(() => {
-      //     cardList.value[cardOne.position].visible = false;
-      //     cardList.value[cardTwo.position].visible = false;
-      //     // Allow user to flip a new card
-      //     userCanFlipCard.value = true;
-      //   }, 2000);
-      // }
       userSelection.value.length = 0;
     }
   },
@@ -102,18 +97,10 @@ watch(
 
 <template>
   <div class="game-container">
-    <div style="max-height: 70px; height: 70px; overflow: hidden">
-      <HeaderComponent center-text="Найди пару" center left></HeaderComponent>
-    </div>
-    <div
-      style="
-        height: calc(100dvh - 70px);
-        max-height: calc(100dvh - 70px);
-        overflow: hidden;
-      "
-    >
+    <HeaderComponent center-text="Найди пару" center left></HeaderComponent>
+    <div class="game-wrapper">
       <GameTitle />
-      <GameBoard :cardList="cardList" :status="status" @flip-card="flipCard" />
+      <GameBoard :cardList="cardList" :status="status" @flip-card="flipCard" :screenWidth="screenWidth" />
     </div>
     <NewGameButton />
   </div>
@@ -141,17 +128,116 @@ watch(
     </template>
     <template v-slot:footer></template>
   </ModalWindow>
+  <div
+    style="height: 65%"
+    data-bs-scroll="true"
+    class="offcanvas offcanvas-bottom rounded-top-5"
+    tabindex="-1"
+    id="offcanvasBottom"
+    aria-labelledby="offcanvasBottomLabel"
+  >
+    <div
+      class="offcanvas-btn mx-auto"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></div>
+    <div style="padding: 15px 0" class="offcanvas-header mx-auto">
+      <h5
+        style="font-family: 'Golos Text', sans-serif !important"
+        class="offcanvas-title text-center text-nowrap fs-2 fw-bold"
+        id="offcanvasBottomLabel"
+      >
+        Информация об призах
+      </h5>
+    </div>
+    <div style="padding: 0 20px" class="offcanvas-body">
+      <div class="mb-4">
+        <p class="info-prize">
+          Чтобы стать участником акции – необходимо пройти идентификацию в
+          приложении Click Up и зайти в раздел «Акция». После этого пользователь
+          автоматически становится участником и получает 1 шанс на участие в
+          розыгрыше основных призов.
+        </p>
+        <p class="info-prize">
+          Главная задача участника – накопить как можно больше шансов для
+          выигрыша одного или нескольких основных призов. Копите шансы,
+          приглашая друзей по своему промокоду.
+        </p>
+        <p class="info-prize">
+          Вы можете следить за ходом розыгрышей основных призов в прямых эфирах
+          на официальных страничках компании:
+        </p>
+      </div>
+      <h1
+        style="
+          font-family: 'Golos Text', sans-serif !important;
+          margin-bottom: 15px;
+        "
+        class="text-center text-nowrap fs-2 fw-bold"
+      >
+        Описание призов
+      </h1>
+      <div class="prizes-description">
+        <div>
+          <div class="prize-item">
+            <img src="@/assets/prize-photo.svg" draggable="false" alt="" />
+          </div>
+          <p class="prize-text">
+            Чтобы стать участником акции – необходимо пройти идентификацию в
+            приложении Click Up и зайти в раздел «Акция».
+          </p>
+        </div>
+      </div>
+      <div class="prizes-description">
+        <div>
+          <div class="prize-item">
+            <img src="@/assets/prize-photo.svg" draggable="false" alt="" />
+          </div>
+          <p class="prize-text">
+            Чтобы стать участником акции – необходимо пройти идентификацию в
+            приложении Click Up и зайти в раздел «Акция».
+          </p>
+        </div>
+      </div>
+      <div class="prizes-description">
+        <div>
+          <div class="prize-item">
+            <img src="@/assets/prize-photo.svg" draggable="false" alt="" />
+          </div>
+          <p class="prize-text">
+            Чтобы стать участником акции – необходимо пройти идентификацию в
+            приложении Click Up и зайти в раздел «Акция».
+          </p>
+        </div>
+      </div>
+      <div class="prizes-description">
+        <div>
+          <div class="prize-item">
+            <img src="@/assets/prize-photo-2.svg" draggable="false" alt="" />
+          </div>
+          <p class="prize-text">
+            Чтобы стать участником акции – необходимо пройти идентификацию в
+            приложении Click Up и зайти в раздел «Акция».
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style lang="scss">
 .game-container {
   display: flex;
-  gap: 10px;
-  justify-content: space-between;
   flex-direction: column;
   height: 100dvh;
   max-height: 100dvh;
   overflow: hidden;
+}
+.game-wrapper{
+  height: calc(100dvh - 170px);
+  max-height: calc(100dvh - 170px);
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .started-game-count {
   position: fixed;
@@ -185,25 +271,15 @@ watch(
   }
 }
 .game-board {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
   overflow: hidden;
   max-height: 100%;
   height: 100%;
-  align-content: center;
   justify-content: center;
   width: 100%;
-  aspect-ratio: 1/1;
-  grid-template-columns: repeat(3, 26%);
-  grid-template-rows: repeat(4, 22%);
-  grid-column-gap: 10px;
-  grid-row-gap: 10px;
-}
-
-@media screen and (max-width: 320px) {
-  .game-board {
-    grid-template-columns: repeat(3, 24%);
-    grid-template-rows: repeat(4, 22%);
-  }
 }
 
 .header-end-image {
