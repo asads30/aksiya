@@ -149,18 +149,21 @@
 
 <style lang="scss" scoped>
 .main {
-  height: calc(100vh - 79px);
-  max-height: calc(100vh - 79px);
+  height: calc(100dvh - 79px);
+  max-height: calc(100dvh - 79px);
   padding: 0 20px 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   .top {
-    height: calc(100vh - 179px);
-    max-height: calc(100vh - 179px);
+    height: calc(100dvh - 179px);
+    max-height: calc(100dvh - 179px);
   }
 }
 .home {
+  background: url(../assets/home_bg.jpg) 100% no-repeat;
+  background-size: cover;
+  background-position: left top;
   &-top {
     display: flex;
     justify-content: space-between;

@@ -16,6 +16,10 @@ defineProps({
     default: false,
     required: true,
   },
+  screenWidth: {
+    type: String,
+    required: true,
+  },
 });
 
 const timelineGame = useMinuteCountDown();
@@ -123,13 +127,7 @@ watch(
       />
     </div>
   </div>
-  <div
-    style="
-      height: calc(100% - 160px);
-      max-height: calc(100% - 160px);
-      overflow: hidden;
-    "
-  >
+  <div class="gameboard-wrapper">
     <transition-group
       tag="section"
       class="game-board"
@@ -144,6 +142,7 @@ watch(
         :visible="card.visible"
         :position="card.position"
         :opened="card.opened"
+        :cardSize="screenWidth"
         @select-card="selectCard"
       />
     </transition-group>

@@ -30,6 +30,9 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  cardSize: {
+    type: Number
+  }
 });
 const emits = defineEmits(["select-card"]);
 
@@ -66,8 +69,8 @@ const selectCard = () => {
 <template>
   <div
     class="card"
+    :style="'width: ' + cardSize + 'px;height: ' + cardSize + 'px;'"
     :class="flippedStyles"
-    :style="borderedCard"
     @click="selectCard"
   >
     <div class="card-face is-front" :class="{ 'is-border': !props.opened }">
