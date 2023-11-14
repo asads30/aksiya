@@ -3,10 +3,10 @@ import Card from "@/components/CardBoard.vue";
 import { useGameStore } from "@/stores/GameStore";
 import { useMinuteCountDown } from "@/utilities/useMinuteCountDown";
 import { storeToRefs } from "pinia";
-import { ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import ModalWindow from "@/components/ui/ModalWindow.vue";
 
-defineProps({
+const props = defineProps({
   cardList: {
     type: Array,
     required: true,
@@ -38,6 +38,18 @@ const cardItems = ref(null);
 const isModalTimeEnded = ref(false);
 const emits = defineEmits(["flip-card"]);
 
+const animSize1 = computed(()=>{
+  let a = (props.screenWidth + 10)
+  return '-' + a + 'px';
+})
+const animSize2 = computed(()=>{
+  let a = (props.screenWidth + 10) * 2
+  return '-' + a + 'px';
+})
+const animSize3 = computed(()=>{
+  let a = (props.screenWidth + 10) * 3
+  return '-' + a + 'px';
+})
 const selectCard = (payload) => {
   if (!newPlayer.value) {
     emits("flip-card", payload);
@@ -297,10 +309,10 @@ watch(
     transform: translate(0, 0);
   }
   3% {
-    transform: translate(-240px, -390px);
+    transform: translate(v-bind(animSize2), v-bind(animSize3));
   }
   97% {
-    transform: translate(-240px, -390px);
+    transform: translate(v-bind(animSize2), v-bind(animSize3));
   }
   100% {
     transform: translate(0, 0);
@@ -314,10 +326,10 @@ watch(
     transform: translate(0, 0);
   }
   6% {
-    transform: translate(-120px, -390px);
+    transform: translate(v-bind(animSize1), v-bind(animSize3));
   }
   94% {
-    transform: translate(-120px, -390px);
+    transform: translate(v-bind(animSize1), v-bind(animSize3));
   }
   100% {
     transform: translate(0, 0);
@@ -334,10 +346,10 @@ watch(
     transform: translate(0, 0);
   }
   9% {
-    transform: translate(0, -390px);
+    transform: translate(0, v-bind(animSize3));
   }
   91% {
-    transform: translate(0, -390px);
+    transform: translate(0, v-bind(animSize3));
   }
   100% {
     transform: translate(0, 0);
@@ -357,10 +369,10 @@ watch(
     transform: translate(0, 0);
   }
   12% {
-    transform: translate(-240px, -260px);
+    transform: translate(v-bind(animSize2), v-bind(animSize2));
   }
   88% {
-    transform: translate(-240px, -260px);
+    transform: translate(v-bind(animSize2), v-bind(animSize2));
   }
   100% {
     transform: translate(0, 0);
@@ -383,10 +395,10 @@ watch(
     transform: translate(0, 0);
   }
   15% {
-    transform: translate(-120px, -260px);
+    transform: translate(v-bind(animSize1), v-bind(animSize2));
   }
   85% {
-    transform: translate(-120px, -260px);
+    transform: translate(v-bind(animSize1), v-bind(animSize2));
   }
   100% {
     transform: translate(0, 0);
@@ -412,10 +424,10 @@ watch(
     transform: translate(0, 0);
   }
   18% {
-    transform: translate(0, -260px);
+    transform: translate(0, v-bind(animSize2));
   }
   82% {
-    transform: translate(0, -260px);
+    transform: translate(0, v-bind(animSize2));
   }
   100% {
     transform: translate(0, 0);
@@ -444,10 +456,10 @@ watch(
     transform: translate(0, 0);
   }
   21% {
-    transform: translate(-240px, -130px);
+    transform: translate(v-bind(animSize2), v-bind(animSize1));
   }
   79% {
-    transform: translate(-240px, -130px);
+    transform: translate(v-bind(animSize2), v-bind(animSize1));
   }
   100% {
     transform: translate(0, 0);
@@ -479,10 +491,10 @@ watch(
     transform: translate(0, 0);
   }
   24% {
-    transform: translate(-120px, -130px);
+    transform: translate(v-bind(animSize1), v-bind(animSize1));
   }
   76% {
-    transform: translate(-120px, -130px);
+    transform: translate(v-bind(animSize1), v-bind(animSize1));
   }
   100% {
     transform: translate(0, 0);
@@ -517,10 +529,10 @@ watch(
     transform: translate(0, 0);
   }
   27% {
-    transform: translate(0, -130px);
+    transform: translate(0, v-bind(animSize1));
   }
   73% {
-    transform: translate(0, -130px);
+    transform: translate(0, v-bind(animSize1));
   }
   100% {
     transform: translate(0, 0);
@@ -558,10 +570,10 @@ watch(
     transform: translate(0, 0);
   }
   30% {
-    transform: translate(-240px, 0);
+    transform: translate(v-bind(animSize2), 0);
   }
   70% {
-    transform: translate(-240px, 0);
+    transform: translate(v-bind(animSize2), 0);
   }
   100% {
     transform: translate(0, 0);
@@ -602,10 +614,10 @@ watch(
     transform: translate(0, 0);
   }
   33% {
-    transform: translate(-120px, 0);
+    transform: translate(v-bind(animSize1), 0);
   }
   70% {
-    transform: translate(-120px, 0);
+    transform: translate(v-bind(animSize1), 0);
   }
   100% {
     transform: translate(0, 0);
