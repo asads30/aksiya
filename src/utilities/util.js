@@ -19,12 +19,14 @@ const clearStorage = function (key = "false") {
   }
 };
 
-const getCookie = function (name = null) {
-  let arr,
-    reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-  if ((arr = document.cookie.match(reg))) return arr[2];
-  else return null;
-};
+const getCookie =  function (name) {
+  // var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+  // if (arr = document.cookie.match(reg))
+  //   return (arr[2]);
+  // else
+  //   return null;
+  return '22f5f782-ca9d-49e6-9368-4fd58a1ea6d7'
+}
 
 // const getIMGPath = function (img) {
 //   return img ? require('@/assets/images/team_members/' + img) : '';

@@ -53,7 +53,7 @@ const flippedStyles = computed(() => {
 
 const borderedCard = computed(() => {
   if (props.opened && countVisibleCard.value <= 2) {
-    return "border:4px solid #0073ff;border-radius: 12px;transform: rotateY(180deg);";
+    return false;
   } else {
     return false;
   }
