@@ -29,12 +29,12 @@
             </div>
           </div>
         </div>
-        <p style="user-select: all; color: white">
+        <!-- <p style="user-select: all; color: white">
           {{ getCookie("web-session") }}
         </p>
         <p style="user-select: all; color: white">
           {{ getCookie() }}
-        </p>
+        </p> -->
         <div class="home-info">
           <div class="home-chance">
             <div class="home-chance-icon">⭐️</div>
@@ -502,7 +502,40 @@
 }
 </style>
 
-<script setup>
+<script>
+  import HeaderComponent from "@/components/ui/Header.vue";
+  export default {
+    name: 'HomeView',
+    components: {
+      HeaderComponent
+    },
+    computed: {
+    },
+    async created() {
+      const data = {
+        web_session: '74c2e2ae-7e8e-4293-bc11-0e7168a8b78f'
+      }
+      const request = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      }
+      let response = await fetch('/api/getMe', request);
+      let json = await response.json();
+      if(json.status == 200){
+        console.log('fdsfsd')
+      } else{
+        if(json.error.code == 1001){
+          this.$router.push({name: 'start'})
+        }
+      }
+    }
+  }
+</script>
+
+<!-- <script setup>
 import { getCookie } from "@/utilities/util";
 import HeaderComponent from "@/components/ui/Header.vue";
 import { computed, reactive } from "vue";
@@ -514,14 +547,23 @@ const appStore = useAppStore();
 const { webSession } = storeToRefs(appStore);
 
 const cookie = computed(() => getCookie("web-session"));
+const lang = computed(() => getCookie("lang"));
 const data = reactive({
-  web_session: cookie.value ? cookie.value : webSession.value,
-  active: 1,
+  web_session: '74c2e2ae-7e8e-4293-bc11-0e7168a8b78f'
 });
-console.log(data);
 
 const router = useRouter();
+
+const request = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(data)
+}
+const response = await fetch('/api/getMe', request);
+const json = await response.json();
 function goGame() {
   router.push("game");
 }
-</script>
+</script> -->
