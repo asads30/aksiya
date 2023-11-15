@@ -3,11 +3,15 @@ import { ref } from "vue";
 
 export const useAppStore = defineStore("AppStore", () => {
   const webSession = ref(null);
+  const user = ref(null)
 
   const setWebSession = (payload) => {
-    console.log(payload);
     webSession.value = payload;
   };
 
-  return { webSession, setWebSession };
+  const setUser = (payload) => {
+    user.value = payload;
+  }
+
+  return { webSession, setWebSession, user, setUser };
 });

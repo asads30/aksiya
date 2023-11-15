@@ -10,7 +10,7 @@
             </div>
             <div class="home-user-text">
               <div class="home-user-name">
-                <span>Ulugbek</span>
+                <span>{{ appStore.user?.name }}</span>
                 <div class="home-user-more">
                   <img src="@/assets/next.svg" alt="" />
                 </div>
@@ -46,12 +46,12 @@
           <div class="home-chance">
             <div class="home-chance-icon">😎</div>
             <div class="home-chance-text">
-              <div class="home-chance-number">1225</div>
+              <div class="home-chance-number">{{ appStore.user?.my_referrals }}</div>
               <div class="home-chance-des">Я пригласил</div>
             </div>
           </div>
         </div>
-        <div class="home-task">
+        <!-- <div class="home-task">
           <div class="home-task-left">
             <div class="home-task-icon">💪</div>
             <div class="home-task-text">
@@ -72,7 +72,7 @@
               <div class="progress-bar" style="width: 50%"></div>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="home-win">
           <div class="home-win-date">30.11.2023 — 30.01.2024</div>
           <div class="home-win-title">Click разыгрывает</div>
@@ -504,16 +504,28 @@
 
 <script>
   import HeaderComponent from "@/components/ui/Header.vue";
+  import { useAppStore } from '@/stores/AppStore'
+  import { getCookie } from '@/utilities/util'
+
   export default {
     name: 'HomeView',
+    data() {
+      return {
+        appStore: useAppStore()
+      }
+    },
     components: {
       HeaderComponent
     },
     computed: {
+      cookie(){
+        return getCookie('web-session')
+      },
     },
     async created() {
+      this.setWeb(this.cookie);
       const data = {
-        web_session: '74c2e2ae-7e8e-4293-bc11-0e7168a8b78f'
+        web_session: this.appStore.webSession
       }
       const request = {
         method: "POST",
@@ -525,45 +537,23 @@
       let response = await fetch('/api/getMe', request);
       let json = await response.json();
       if(json.status == 200){
-        console.log('fdsfsd')
+        this.setUser(json.data);
       } else{
         if(json.error.code == 1001){
           this.$router.push({name: 'start'})
         }
       }
-    }
+    },
+    methods: {
+      setWeb(session){
+        this.appStore.setWebSession(session)
+      },
+      setUser(user){
+        this.appStore.setUser(user)
+      },
+      goGame(){
+        this.$router.push('game')
+      }
+    },
   }
 </script>
-
-<!-- <script setup>
-import { getCookie } from "@/utilities/util";
-import HeaderComponent from "@/components/ui/Header.vue";
-import { computed, reactive } from "vue";
-import { useAppStore } from "@/stores/AppStore";
-import { storeToRefs } from "pinia";
-import { useRouter } from "vue-router";
-
-const appStore = useAppStore();
-const { webSession } = storeToRefs(appStore);
-
-const cookie = computed(() => getCookie("web-session"));
-const lang = computed(() => getCookie("lang"));
-const data = reactive({
-  web_session: '74c2e2ae-7e8e-4293-bc11-0e7168a8b78f'
-});
-
-const router = useRouter();
-
-const request = {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify(data)
-}
-const response = await fetch('/api/getMe', request);
-const json = await response.json();
-function goGame() {
-  router.push("game");
-}
-</script> -->
