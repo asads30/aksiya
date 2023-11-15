@@ -4,9 +4,16 @@
       <HeaderComponent center center-text="Акция 2.0"></HeaderComponent>
     </div>
     <div class="start-content">
+      <div></div>
       <div class="start-prize">
+        <img class="coin-1" src="@/assets/prize/coin.png" alt="" />
+        <img class="money-1" src="@/assets/prize/money.svg" alt="" />
+        <img class="money-2" src="@/assets/prize/money.svg" alt="" />
+        <img class="coin-2" src="@/assets/prize/coin.png" alt="" />
+        <img class="coin-3" src="@/assets/prize/coin.png" alt="" />
+        <img class="coin-4" src="@/assets/prize/coin.png" alt="" />
         <p class="prize-text">CLICK РАЗЫГРЫВАЕТ</p>
-        <p class="prize-sum">{{ [3000000000].toLocaleString() }}</p>
+        <p class="prize-sum">{{ [1000000000].toLocaleString() }}</p>
         <p class="valyuta" style="text-align: center; margin-top: -8px">
           сумов
         </p>
@@ -131,9 +138,9 @@
 
 <style lang="scss" scoped>
 .start-container {
-  height: 100dvh;
-  max-height: 100dvh;
-  width: 100%;
+  //height: 100dvh;
+  //max-height: 100dvh;
+  //width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -142,14 +149,115 @@
   background-repeat: no-repeat;
   background-position: center;
   & .start-content {
-    max-height: calc(100dvh - 70px);
     height: calc(100dvh - 70px);
+    max-height: calc(100dvh - 70px);
+    overflow-x: hidden;
+    overflow-y: scroll;
+    position: relative;
+    & .coin-1 {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      top: 5%;
+      left: 2%;
+      animation: Coin1 6s linear infinite;
+    }
+    @keyframes Coin1 {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(1turn);
+      }
+    }
+    & .money-1 {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      top: 93%;
+      left: 45%;
+      animation: Money1 10s linear infinite reverse;
+    }
+    @keyframes Money1 {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(1turn);
+      }
+    }
+    & .money-2 {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      animation: Money2 10s linear infinite reverse;
+    }
+    @keyframes Money2 {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(1turn);
+      }
+    }
+    & .coin-2 {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      top: 90%;
+      left: 15%;
+      animation: Coin2 6s linear infinite;
+    }
+    @keyframes Coin2 {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(1turn);
+      }
+    }
+    & .coin-3 {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      top: -20px;
+      right: 6%;
+      animation: Coin3 6s linear infinite;
+    }
+    @keyframes Coin3 {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(1turn);
+      }
+    }
+    & .coin-4 {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      top: 80%;
+      left: 82%;
+      bottom: 50px;
+      animation: Coin4 6s linear infinite;
+    }
+    @keyframes Coin4 {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(1turn);
+      }
+    }
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     & .start-prize {
-      padding: 100px 20px 10px;
+      position: relative;
+      padding: 0 20px 10px;
       & .prize-text {
         color: #fff;
         text-align: center;
@@ -360,6 +468,17 @@
     & .start-content {
       & .start-prize {
         padding: 30px 20px 10px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 280px) {
+  .start-container {
+    & .start-content {
+      & .start-prize {
+        & .prize-sum {
+          font-size: 30px;
+        }
       }
     }
   }

@@ -29,6 +29,11 @@ const routes = [
     component: () => import("@/views/ReferallView.vue"),
   },
   {
+    path: "/guest",
+    name: "guest",
+    component: () => import("@/views/GuestView.vue"),
+  },
+  {
     path: "/start",
     name: "start",
     component: () => import("@/views/StartView.vue"),
