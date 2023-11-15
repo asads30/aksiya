@@ -6,11 +6,11 @@ export const useMinuteCountDown = () => {
   const intervalTimeout = ref(null);
   const startCountDownGame = () => {
     function addMinutes(date, minutes) {
-      date.setSeconds(date.getSeconds() + 3);
+      date.setSeconds(date.getSeconds() + 1);
       date.setMinutes(date.getMinutes() + minutes);
       return date;
     }
-    const countDownDate = addMinutes(new Date(), 1); // deadline
+    const countDownDate = addMinutes(new Date(), 2); // deadline
     intervalTimeout.value = setInterval(() => {
       let now = new Date().getTime();
       let distance = countDownDate - now;

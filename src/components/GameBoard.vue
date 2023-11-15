@@ -45,7 +45,7 @@ const animSize3 = computed(() => {
   return "-" + a + "px";
 });
 const selectCard = (payload) => {
-  if (!newPlayer.value) {
+  if (userCanFlipCard.value) {
     emits("flip-card", payload);
   }
 };
@@ -110,7 +110,7 @@ watch(
           ? "01:00"
           : timelineGame.secondsTimeLine.value < 0
           ? `00:00`
-          : "01:00"
+          : ""
       }}
     </p>
   </div>

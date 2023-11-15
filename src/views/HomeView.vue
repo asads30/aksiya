@@ -506,7 +506,6 @@
 import { getCookie } from "@/utilities/util";
 import HeaderComponent from "@/components/ui/Header.vue";
 import { computed, reactive } from "vue";
-import { getMeUserData } from "@/services/app.api";
 import { useAppStore } from "@/stores/AppStore";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
@@ -519,20 +518,10 @@ const data = reactive({
   web_session: cookie.value ? cookie.value : webSession.value,
   active: 1,
 });
+console.log(data);
 
 const router = useRouter();
-
-async function getUserInfo() {
-  try {
-    const response = await getMeUserData(data);
-    console.log(response.data);
-    appStore.setWebSession(response.data?.web_session);
-  } catch (err) {
-    console.log(err);
-  }
-}
 function goGame() {
   router.push("game");
 }
-getUserInfo();
 </script>

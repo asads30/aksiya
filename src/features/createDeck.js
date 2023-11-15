@@ -1,6 +1,4 @@
 import { ref } from "vue";
-import { useGameStore } from "@/stores/GameStore";
-import { storeToRefs } from "pinia";
 
 const cardList = ref([]);
 
@@ -14,7 +12,6 @@ const initDeck = (deckData) => {
       matched: false,
       opened: false,
     });
-
     cardList.value.push({
       value: item,
       variant: 2,
@@ -36,15 +33,17 @@ const updateCardPosition = () => {
 };
 
 export default function createDeck(deckData = null) {
-  const gameStore = useGameStore();
-  const { startedGame } = storeToRefs(gameStore);
   initDeck(deckData);
   updateCardPosition();
   const visibleAllCard = () => {
-    if (startedGame) {
-      const copyCardList = JSON.stringify(cardList.value);
-      cardList.value = JSON.parse(copyCardList);
-    }
+    cardList.value = cardList.value.map((card) => {
+      return {
+        ...card,
+        visible: true,
+      };
+    });
+    const copyCardList = JSON.stringify(cardList.value);
+    cardList.value = JSON.parse(copyCardList);
   };
   return {
     visibleAllCard,

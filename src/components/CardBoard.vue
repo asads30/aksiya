@@ -4,7 +4,8 @@ import { useGameStore } from "@/stores/GameStore";
 import { storeToRefs } from "pinia";
 
 const gameStore = useGameStore();
-const { countVisibleCard, startedGame } = storeToRefs(gameStore);
+const { countVisibleCard, startedGame, userCanFlipCard } =
+  storeToRefs(gameStore);
 
 const tooltipText = ref(
   "Lorem ipsum ipsum Lorem ipsum ipsum Lorem ipsum ipsum Lorem ipsum ipsum"
@@ -60,7 +61,7 @@ const borderedCard = computed(() => {
 
 const selectCard = () => {
   // Check to make sure that a card is not already matched
-  if (!props.matched) {
+  if (!props.matched && userCanFlipCard.value) {
     if (!props.visible && startedGame.value) {
       gameStore.countVisibleCard += 1;
     }
@@ -106,8 +107,7 @@ const selectCard = () => {
   width: v-bind(widthCard);
   height: v-bind(heightCard);
   position: relative;
-  border-radius: 12px;
-  transition: 0.5s transform ease-in;
+  transition: 0.6s transform ease-in;
   transform-style: preserve-3d;
 }
 .card.is-flipped {
