@@ -72,10 +72,10 @@ watch(
         cardList.value[cardTwo.position].matched = true;
         userCanFlipCard.value = false;
       } else {
+        startedGame.value = false;
         setTimeout(() => {
-          startedGame.value = false;
           isModalLoseVisible.value = true;
-        }, 3000);
+        }, 5000);
       }
       userSelection.value.length = 0;
     }
@@ -89,7 +89,7 @@ watch(
     if (!value && countVisibleCard.value === 2) {
       setTimeout(() => {
         deckCard.visibleAllCard();
-      }, 3000);
+      }, 1700);
     }
   }
 );
