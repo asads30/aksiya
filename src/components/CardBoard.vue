@@ -83,9 +83,16 @@ const selectCard = () => {
     <div class="card-face is-front" :class="{ 'is-border': !props.opened }">
       <span v-tooltip.top="!startedGame ? tooltipText : null">
         <img
+          v-if="value !== 'Gift' && value !== 'Present'"
           draggable="false"
           class="card-image"
-          :srcset="`/images/${value}@2x.png 2x, /images/${value}.png 1x`"
+          :src="`/images/${value}.svg`"
+          :alt="value"
+        />
+        <img
+          v-else
+          draggable="false"
+          class="card-image"
           :src="`/images/${value}.png`"
           :alt="value"
         />
@@ -140,10 +147,9 @@ const selectCard = () => {
 }
 .card-image {
   display: flex;
-  width: 100%;
+  width: 80%;
   height: 100%;
-  justify-content: center;
-  align-items: center;
+  margin: auto;
 }
 .icon-checkmark {
   position: absolute;

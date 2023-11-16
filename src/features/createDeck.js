@@ -1,7 +1,24 @@
 import { ref } from "vue";
 
 const cardList = ref([]);
-
+const additionalPrize = ref(
+  {
+    value: "Gift",
+    variant: 1,
+    visible: true,
+    position: 10,
+    matched: false,
+    opened: false,
+  },
+  {
+    value: "Present",
+    variant: 2,
+    visible: true,
+    position: 11,
+    matched: false,
+    opened: false,
+  }
+);
 const initDeck = (deckData) => {
   deckData?.forEach((item) => {
     cardList.value.push({
@@ -24,6 +41,7 @@ const initDeck = (deckData) => {
 };
 
 const updateCardPosition = () => {
+  cardList.value.push(additionalPrize.value);
   cardList.value = cardList.value.map((card, index) => {
     return {
       ...card,
