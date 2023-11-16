@@ -46,7 +46,9 @@
           <div class="home-chance">
             <div class="home-chance-icon">😎</div>
             <div class="home-chance-text">
-              <div class="home-chance-number">{{ appStore.user?.my_referrals }}</div>
+              <div class="home-chance-number">
+                {{ appStore.user?.my_referrals }}
+              </div>
               <div class="home-chance-des">Я пригласил</div>
             </div>
           </div>
@@ -503,57 +505,58 @@
 </style>
 
 <script>
-  import HeaderComponent from "@/components/ui/Header.vue";
-  import { useAppStore } from '@/stores/AppStore'
-  import { getCookie } from '@/utilities/util'
+import HeaderComponent from "@/components/ui/Header.vue";
+import { useAppStore } from "@/stores/AppStore";
+import { getCookie } from "@/utilities/util";
 
-  export default {
-    name: 'HomeView',
-    data() {
-      return {
-        appStore: useAppStore()
-      }
+export default {
+  name: "HomeView",
+  data() {
+    return {
+      appStore: useAppStore(),
+    };
+  },
+  components: {
+    HeaderComponent,
+  },
+  computed: {
+    cookie() {
+      return getCookie("web-session");
     },
-    components: {
-      HeaderComponent
-    },
-    computed: {
-      cookie(){
-        return getCookie('web-session')
+  },
+  async created() {
+    this.setWeb(this.cookie);
+    const data = {
+      web_session: this.appStore.webSession,
+    };
+    const request = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
       },
+      body: JSON.stringify(data),
+    };
+    let response = await fetch("/api/getMe", request);
+    let json = await response.json();
+    if (json.status == 200) {
+      this.setUser(json.data);
+    } else {
+      if (json.error.code == 1001) {
+        this.$router.push({ name: "start" });
+      }
+    }
+  },
+  methods: {
+    setWeb(session) {
+      this.appStore.setWebSession(session);
     },
-    async created() {
-      this.setWeb(this.cookie);
-      const data = {
-        web_session: this.appStore.webSession
-      }
-      const request = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      }
-      let response = await fetch('/api/getMe', request);
-      let json = await response.json();
-      if(json.status == 200){
-        this.setUser(json.data);
-      } else{
-        if(json.error.code == 1001){
-          this.$router.push({name: 'start'})
-        }
-      }
+    setUser(user) {
+      this.appStore.setUser(user);
     },
-    methods: {
-      setWeb(session){
-        this.appStore.setWebSession(session)
-      },
-      setUser(user){
-        this.appStore.setUser(user)
-      },
-      goGame(){
-        this.$router.push('game')
-      }
+    goGame() {
+      this.$router.push("game");
     },
-  }
+  },
+};
 </script>

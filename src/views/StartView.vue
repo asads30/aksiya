@@ -24,9 +24,9 @@
             <ul class="nav nav-tabs pushtab-nav" id="promoTab" role="tablist">
               <li class="nav-item" role="presentation">
                 <button
-                  @click="!getActiveTab"
+                  @click="!getActiveTab.promo, activeTabSet('promo')"
                   :class="
-                    getActiveTab === true ? 'nav-link' : 'nav-link active'
+                    getActiveTab.promo === true ? 'nav-link' : 'nav-link active'
                   "
                   id="promo-tab"
                   data-bs-toggle="tab"
@@ -41,9 +41,11 @@
               </li>
               <li class="nav-item" role="presentation">
                 <button
-                  @click="!getActiveTab"
+                  @click="!getActiveTab.aksiya, activeTabSet('aksiya')"
                   :class="
-                    getActiveTab === false ? 'nav-link' : 'nav-link active'
+                    getActiveTab.aksiya === false
+                      ? 'nav-link'
+                      : 'nav-link active'
                   "
                   id="aksiya-tab"
                   data-bs-toggle="tab"
@@ -62,7 +64,7 @@
         <div class="tab-content" id="promoTabContent">
           <div
             :class="
-              getActiveTab === true
+              getActiveTab.promo === true
                 ? 'tab-pane fade'
                 : 'tab-pane fade show active'
             "
@@ -83,24 +85,33 @@
                     <p>возможность поиграть в игру</p>
                   </div>
                 </div>
-                <form>
+                <form ref="submitForm">
                   <input
                     class="promo-input"
+                    :class="validCode.msg ? 'border-red' : 'border-green'"
                     type="text"
+                    :pattern="/[A-Z0-9]/"
                     inputmode="text"
-                    pattern="/^[A-Z0-9]*$/"
                     required
-                    minlength="5"
+                    v-model="referallCode"
                     maxlength="8"
                     placeholder="Введите код приглашения"
                   />
+                  <span
+                    style="
+                      color: red;
+                      font-family: 'Golos Text', sans-serif !important;
+                    "
+                    v-if="validCode.msg"
+                    >{{ validCode.msg }}</span
+                  >
                 </form>
               </div>
             </div>
           </div>
           <div
             :class="
-              getActiveTab === false
+              getActiveTab.aksiya === false
                 ? 'tab-pane fade'
                 : 'tab-pane fade show active'
             "
@@ -129,7 +140,23 @@
           <span>с условиями</span> акции «ID марафон»
         </p>
         <div class="btn-game">
-          <button class="btn-active">Участвовать</button>
+          <button
+            v-ripple.click.500="'rgba(255, 255, 255, 0.35)'"
+            v-if="isPromoTab"
+            :disabled="validCode.disabled"
+            @click="sendRequestCode"
+            :class="validCode.disabled ? 'btn-disabled' : 'btn-active'"
+          >
+            Участвовать
+          </button>
+          <button
+            v-ripple.click.500="'rgba(255, 255, 255, 0.35)'"
+            v-else
+            @click="sendAksiyaAccept"
+            class="btn-active"
+          >
+            Участвовать
+          </button>
         </div>
       </div>
     </div>
@@ -138,9 +165,6 @@
 
 <style lang="scss" scoped>
 .start-container {
-  //height: 100dvh;
-  //max-height: 100dvh;
-  //width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -382,16 +406,20 @@
         line-height: normal;
         letter-spacing: 2px;
       }
+      .promo-input:focus.border-green {
+        border: 1px solid #0073ff;
+      }
+      .promo-input.border-red {
+        border: 1px solid #ff706f;
+      }
       .promo-input::placeholder {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding-top: -5px;
-        font-size: 15px;
+        width: 100%;
+        padding-top: -15px;
+        font-size: 14px;
       }
-      //.promo-input:required {
-      //  border: 1px solid #ff706f;
-      //}
     }
     .aksiya-wrapper {
       padding-top: 8px;
@@ -450,14 +478,30 @@
         border: none;
         border-radius: 10px;
         background-color: #0073ff;
-        height: 40px;
-        line-height: 40px;
+        height: 50px;
+        line-height: 50px;
         border: 0;
         width: 100%;
         color: #ffffff;
         text-align: center;
         font-size: 14px;
         font-weight: 700;
+      }
+      & .btn-disabled {
+        outline: none;
+        border: none;
+        border-radius: 10px;
+        background-color: #2c2d35;
+        height: 50px;
+        line-height: 50px;
+        border: 0;
+        width: 100%;
+        color: #575965;
+        text-align: center;
+        font-family: Golos Text, sans-serif !important;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
       }
     }
   }
@@ -487,11 +531,76 @@
 
 <script setup>
 import HeaderComponent from "@/components/ui/Header.vue";
-import { ref } from "vue";
+import { reactive, ref, watch } from "vue";
+import { useAppStore } from "@/stores/AppStore";
 
-const getActiveTab = ref(true);
+const appStore = useAppStore();
 
-// const errorData = (event) => {
-//   console.log(event);
-// };
+const submitForm = ref(null);
+const isPromoTab = ref(true);
+const getActiveTab = reactive({
+  promo: false,
+  aksiya: false,
+});
+const activeTabSet = (nameTab) => {
+  isPromoTab.value = nameTab === "promo";
+};
+const referallCode = ref(null);
+
+const validCode = reactive({
+  msg: null,
+  disabled: true,
+});
+
+watch(referallCode, (value) => {
+  validateCode(value);
+});
+
+const sendAksiyaAccept = async () => {
+  const data = {
+    web_session: appStore.webSession,
+    activate: 1,
+  };
+  const request = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(data),
+  };
+  let response = await fetch("/api/getMe", request);
+  console.log(response.json);
+};
+
+const sendRequestCode = async () => {
+  const data = {
+    web_session: appStore.webSession,
+    activate: 1,
+    username: referallCode.value.toUpperCase(),
+  };
+  const request = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(data),
+  };
+  let response = await fetch("/api/getMe", request);
+  console.log(response.json);
+};
+const validateCode = (value) => {
+  if (!/[A-Z0-9]/.test(value)) {
+    validCode.msg = "Invalid Format Referall Code";
+    validCode.disabled = false;
+  } else if (value.length < 8) {
+    validCode.msg = "Invalid Length Code";
+    validCode.disabled = true;
+  } else {
+    validCode.msg = "";
+    validCode.disabled = false;
+    // sendRequestCode();
+  }
+};
 </script>
